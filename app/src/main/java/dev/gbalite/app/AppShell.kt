@@ -59,6 +59,7 @@ internal fun playTimeText(ms: Long): String {
     val focusManager=androidx.compose.ui.platform.LocalFocusManager.current
     val keyboard=androidx.compose.ui.platform.LocalSoftwareKeyboardController.current
     fun leaveInput() {focusManager.clearFocus();keyboard?.hide()}
+    var settingsNested by remember {mutableStateOf(false)}
     var page by rememberSaveable {mutableStateOf("首页")}
     var detailId by rememberSaveable {mutableStateOf<String?>(null)}
     var settingsReturnPage by rememberSaveable {mutableStateOf("首页")}
@@ -73,7 +74,7 @@ internal fun playTimeText(ms: Long): String {
     val detail=games.firstOrNull {it.record.gameId.value==detailId}
     BackHandler(enabled=detailId!=null || page!="首页") {if(detailId!=null) {detailId=null;page="游戏库"} else page="首页"}
     Column(Modifier.fillMaxSize().safeDrawingPadding()) {
-        Row(Modifier.fillMaxWidth().padding(horizontal=16.dp),verticalAlignment=Alignment.CenterVertically) {
+        if(page!="设置") Row(Modifier.fillMaxWidth().padding(horizontal=16.dp),verticalAlignment=Alignment.CenterVertically) {
             Text("GBA Lite",style=MaterialTheme.typography.headlineMedium,modifier=Modifier.weight(1f))
             if(page!="设置") TextButton(enabled=!model.loading,onClick={pick()}) {Text("添加游戏")}
         }
@@ -88,7 +89,7 @@ internal fun playTimeText(ms: Long): String {
         Box(Modifier.weight(1f)) {
             when {
                 detail!=null -> GameDetails(detail,model,{detailId=null;page="游戏库"},{pick(detail.record.gameId)},{settingsReturnPage="游戏库";settingsReturnDetail=detail.record.gameId.value;page="设置";detailId=null})
-                page=="设置" -> UnifiedSettings(model,onBack={page=settingsReturnPage;detailId=settingsReturnDetail})
+                page=="设置" -> UnifiedSettings(model,onBack={page=settingsReturnPage;detailId=settingsReturnDetail},onDepthChanged={settingsNested=it})
                 else -> {
                     val selected=if(page=="首页") games.filter {it.lastPlayedAt.isNotEmpty()}.sortedByDescending {it.lastPlayedAt}.take(5)
                         else librarySelection(games,query,LibrarySort.valueOf(sort))
@@ -130,11 +131,12 @@ internal fun playTimeText(ms: Long): String {
                 }
             }
         }
-        NavigationBar {listOf("首页","游戏库","设置").forEach {tab -> NavigationBarItem(selected=page==tab,onClick={
+        if(detail==null && !(page=="设置" && settingsNested)) NavigationBar(containerColor=dev.gbalite.player.ui.UiColors.Surface,tonalElevation=0.dp) {listOf("首页","游戏库","设置").forEach {tab -> NavigationBarItem(selected=page==tab,onClick={
             leaveInput()
             if(tab=="设置" && page!="设置") {settingsReturnPage=page;settingsReturnDetail=detailId}
             page=tab;detailId=null
-        },modifier=Modifier.testTag("nav-$tab"),icon={Text(when(tab) {"首页"->"⌂";"游戏库"->"▦";else->"⚙"})},label={Text(tab)})}}
+        },modifier=Modifier.testTag("nav-$tab"),colors=NavigationBarItemDefaults.colors(indicatorColor=dev.gbalite.player.ui.UiColors.AccentTint),icon={dev.gbalite.player.ui.GbaIcon(when(tab) {"首页"->"home";"游戏库"->"library";else->"settings"})},label={Text(tab)})}}
+
     }
 }
 private fun sortName(sort: LibrarySort)=when(sort) {LibrarySort.RECENT->"最近游玩";LibrarySort.NAME->"名称";LibrarySort.ADDED->"最近添加";LibrarySort.PLAY_TIME->"游戏时长"}

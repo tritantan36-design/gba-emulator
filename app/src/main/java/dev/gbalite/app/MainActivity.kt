@@ -57,15 +57,15 @@ class MainActivity: ComponentActivity() {
                 }
                 onDispose { controller.show(androidx.core.view.WindowInsetsCompat.Type.systemBars()) }
             }
-            MaterialTheme {
+            dev.gbalite.player.ui.GbaTheme {
                 Surface(Modifier.fillMaxSize(),color=if(model.playing && !model.appSettings) {
                     if(lightBackground) androidx.compose.ui.graphics.Color.White else androidx.compose.ui.graphics.Color.Black
                 } else MaterialTheme.colorScheme.surface) {
                     val error by model.session.persistenceError.collectAsState()
                     if(model.playing && model.appSettings) {
-                        Box(Modifier.fillMaxSize().safeDrawingPadding()) {UnifiedSettings(model,model::closeAppSettings)}
+                        Box(Modifier.fillMaxSize().safeDrawingPadding()) {UnifiedSettings(model,model::closeAppSettings,rootBack=true)}
                     } else if(model.playing) {
-                        Column {
+                        dev.gbalite.player.ui.GbaGameTheme { Column {
                             model.message?.let { Text(it,Modifier.padding(8.dp)) }
                             error?.let { Text(errorText(it),Modifier.padding(8.dp)) }
                             Player(model.session,foreground,model::exit,error?.let(::errorText),model.profiles,model::screenshot,
@@ -75,6 +75,7 @@ class MainActivity: ComponentActivity() {
                                 model::openAppSettings,model.startManual,model.startMenu,model::consumeRequests) { slot,time ->
                                 model.images.thumbnail(model.session.gameId,slot,time)
                             }
+                        }
                         }
                     } else AppShell(model)
                 }
