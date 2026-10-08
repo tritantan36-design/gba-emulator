@@ -1,8 +1,8 @@
 # Phase 7 最终人工验收清单
 
 日期：2026-10-08。**准备稿；Manual Acceptance = PENDING_USER**。
-自动门槛仍 BLOCKED，当前不能签署 Phase7 PASS。此清单用于提前准备；
-待 Remote CI/API/兼容性缺口处理后，再确认候选包和最终验收结论。
+Remote CI 与 API26/29 TEST-ONLY 最小覆盖已有真实结果；游戏广度仍有下述限制，
+当前不能签署 Phase7 PASS。用户要求最后交付人工测试；本清单不预填通过。
 旧阶段人工通过、模拟器或 instrumentation 通过均不代替本次用户确认。
 
 候选：0.7.0/code7，Debug `app/build/outputs/apk/debug/app-debug.apk`；
@@ -33,7 +33,7 @@ Release SHA256: a4e8a3594e7fba749b6eb9ba5fe676d0c0c302123da0b5536ec3779838ef4314
 | Rewind | 倒带后松开继续，画面/输入正常，Battery 不回滚 | 推荐实机 |
 | Touch Controls | 滑动、多点、A+B/L+R、旋转/后台后无粘键，布局设置保持 | 触感 PHYSICAL_DEVICE_REQUIRED |
 | Bluetooth controller | 系统配对后输入、触控合并、断开重连、无粘键 | PHYSICAL_DEVICE_REQUIRED |
-| USB HID（如有） | 连接/断开重连、输入；没有设备填 NOT_TESTED | PHYSICAL_DEVICE_REQUIRED |
+| USB HID（如有） | 连接/断开重连、输入；没有设备填 NOT_AVAILABLE | PHYSICAL_DEVICE_REQUIRED |
 | 四显示模式 | Original/Sharp/GBA Color/LCD，Fit/Integer、背景，无黑屏或持续卡死 | 最终 renderer feel PHYSICAL_DEVICE_REQUIRED |
 | Orientation | 竖屏→横屏→反横屏→竖屏，画面比例/控制布局/进度正确 | PHYSICAL_DEVICE_REQUIRED |
 | 后台/前台/退出/重开 | Home 后自有声音停止；返回恢复，无重叠音频、黑屏、输入残留 | OEM lifecycle/audio PHYSICAL_DEVICE_REQUIRED |
@@ -58,7 +58,7 @@ Rumble 继续 DEFERRED — V1 zero-permission policy。
 日期/机型/OEM/API：
 APK SHA256：
 实际游玩分钟/类型/中断：
-各行：PASS / FAIL / NOT_TESTED（失败现象和最短复现步骤）：
+各行：PASS / FAIL / NOT_AVAILABLE / PENDING_USER（失败现象和最短复现步骤）：
 HID/真实音频/传感器/热量电池：
 未覆盖类型或硬件：
 最终人工结论：PASS / FAIL / 尚未完成
@@ -66,3 +66,20 @@ HID/真实音频/传感器/热量电池：
 
 只有用户真实完成并确认，才可更新 Manual Acceptance；仍有自动门槛阻塞时，
 单独人工通过也不能把 Phase7 改成 READY_FOR_7_5。
+
+## 本次人工交接
+
+可安装的是普通 arm64-v8a Debug 包；不要安装标注 TEST-ONLY 的 x86_64兼容测试包。
+unsigned Release 仅供校验和归档，没有生产签名，不能直接安装。不要为验收卸载已有
+应用或清除数据；如签名冲突先反馈现象。保留现有游戏存档备份。
+
+1. 将 Debug APK 复制到 arm64 Android 设备，安装后记录机型/OEM/API及此包SHA。
+2. 从自己已有的合法本地游戏选择代表类型，通过系统文件选择器导入；无需上传ROM。
+3. 先完成一次30–60分钟真实游玩，其间覆盖保存、读档、快进/倒带、后台和旋转。
+4. 按表逐项填写。蓝牙/USB/传感器缺设备则填NOT_AVAILABLE，尚未测填PENDING_USER。
+5. 将回填文本发回，失败注明最短复现步骤。未覆盖类型与已知风险是否可接受应单独说明。
+
+特别需要补充：save-heavy游戏内多次保存后退出重开、确认Battery进度；RTC/传感器完整
+游戏（如有合法本地资源及硬件）；action及真实音频听感。已运行的脚本游戏不会代替这些
+体验结论。API26/29 ARM、第二OEM缺设备及Phase2历史State缺档是独立限制，需要最终
+判定明确记录；当前没有用户接受这些限制的记录。API29 SAF短暂黑帧及历史GPU风险仍MONITORED。

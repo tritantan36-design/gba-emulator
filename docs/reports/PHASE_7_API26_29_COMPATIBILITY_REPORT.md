@@ -45,3 +45,12 @@ Local raw evidence: `docs/reports/evidence/phase7/remaining-gaps/api26-*` and
 `api29-*`. It is intentionally not published. All tests use original internal
 homebrew; no representative complete-gameplay or physical HID/audio/sensor/thermal
 acceptance is implied. Existing API34/36 and long-run evidence is reused.
+
+## 后续完整 Homebrew 定向验证
+
+API29 同一TEST-ONLY compat包新增Blob Goes 3D v1.1完整游戏输入脚本：短烟测
+1/1 PASS35.449s；10分钟脚本1/1 PASS616.727s。Quick/Slot、4x快进、倒带、
+Home恢复、Continue及实际TextureView可见帧已检查。它使用严格哈希的测试provider，
+不是新增系统DocumentsUI picker测试；不改变既有SAF黑帧MONITORED结论。
+Hyperspace Roll短烟测1/1 PASS41.597s，截图确认实际骰子战斗，10分钟session1/1 PASS626.748s；覆盖仍PARTIAL，详细见
+[gameplay执行报告](PHASE_7_GAMEPLAY_EXECUTION_REPORT.md)。这些不是普通arm64包在API29实机运行的证据。

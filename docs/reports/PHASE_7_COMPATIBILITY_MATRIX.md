@@ -16,10 +16,10 @@ evidence. All ROMs stay out of production APKs.
 | Internal rumble mailbox | peripheral-tests.json | A / Apache-2.0 | PASS | NOT_APPLICABLE | NOT_APPLICABLE | PASS | NOT_APPLICABLE | NOT_TESTED | NOT_TESTED | NOT_TESTED | PASS_WITH_NOTE | NOT_TESTED | PASS_WITH_NOTE | Mailbox only; physical output DEFERRED — V1 zero-permission policy. |
 | Selected mGBA shifter suite | mgba-emu/suite e6942030d25ffe3ba76c72b73a86da073ec857cc | A / MIT, retained selected source | PASS | PASS_WITH_NOTE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_APPLICABLE | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_APPLICABLE | NOT_TESTED | PASS_WITH_NOTE | 70/70 original expected cases passed. Selected driver, not full upstream/timing/BIOS suite. |
 | Internal A/B/C stress variants | phase7-stress.json | A / Apache-2.0 | PASS | PASS | NOT_TESTED | PASS | PASS | PASS | PASS_WITH_NOTE | NOT_TESTED | NOT_APPLICABLE | PASS_WITH_NOTE | PASS_WITH_NOTE | Software API34 real elapsed3612378ms/60 cycles complete, instrumentation PASS3614.31s.50 Home/ROM-switch cycles and150 orientation transitions; requested FF/state/checkpoints pass. Rewind branch conditional, no per-action count: independent checks retained. Dedicated100 actual mode changes/50 Home cycles PASS337.991s. Automated internal corpus, not human gameplay/audio acceptance. Two host failures and phone USER_STOPPED retained. |
-| Platformer homebrew | Local manual corpus | C / not acquired | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | No third-party ROM vendored or tested. |
-| Action / audio-heavy homebrew | Local manual corpus | B after asset audit, otherwise C | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | BeatBeast candidate; source MIT alone does not complete asset audit. |
-| High-load / 3D homebrew | Local manual corpus | B after asset audit, otherwise C | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | Varooom 3D candidate, not acquired. |
-| Save-heavy / RTC-sensor gameplay | Local manual corpus | C / not acquired | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | Internal probes cannot substitute for real-game breadth. |
+| Blob Goes 3D v1.1 | MilanFIN/blob-goes-3d 5e5bbca | B / MIT + dependency notices; local only | PASS | PASS | PASS_WITH_NOTE | PASS | PARTIAL | PASS | PASS | PASS | NOT_APPLICABLE | NOT_TESTED | PASS_WITH_NOTE | 10min requested script, instrumentation616.727s,764 input actions; real 3D level. Actual game progress/Battery save semantics and human audio remain unproven. |
+| Hyperspace Roll / agb v0.25.0 | agbrs/agb 1c2842c | B conditional / MPL + font CC-BY-SA; local only | PASS | PASS | PASS_WITH_NOTE | PASS | PARTIAL | PASS | PASS | PASS | NOT_APPLICABLE | NOT_TESTED | PASS_WITH_NOTE / COVERAGE_PARTIAL | Smoke41.597s and10min session626.748s; actual battle confirmed. Script can remain on upgrade configuration; not continuous combat or game-completion evidence. |
+| Save-heavy complete gameplay | No approved save-intensive game acquired | MISSING; probes PARTIAL | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | PARTIAL | PARTIAL | NOT_TESTED | NOT_TESTED | NOT_APPLICABLE | NOT_TESTED | PARTIAL | Existing persistence transactions and new Flash/SRAM/state paths do not substitute for sustained in-game save/reload progression. |
+| RTC/sensor complete gameplay | No approved complete game acquired | MISSING; probes PARTIAL | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | PARTIAL | NOT_TESTED | MISSING | Internal RTC/Tilt/Gyro/Solar probes reused; complete-game and real hardware feedback absent. |
 | local user-owned commercial ROM manual compatibility | Private local only | D | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | NOT_TESTED | No commercial ROM collected, copied, named or uploaded. |
 
 Evidence: evidence/phase7/7a-host-portable-final.log,
@@ -39,13 +39,14 @@ See the Phase 7A report for current open gates.
 |Second physical OEM|Not available; original requirement conditional on availability|NOT_TESTED / justified limitation|
 
 Current API36 uses software GPU/official ARM translation, not physical performance or
-audio/HID/sensor acceptance. Representative complete-gameplay categories in the ROM
-table remain NOT_TESTED; internal probes/elapsed stress are not those games.
+audio/HID/sensor acceptance. New bounded full-homebrew evidence appears above; action/audio-heavy/save-heavy breadth remains PARTIAL
+and RTC/sensor complete gameplay MISSING. Internal probes do not replace those gaps.
 Actual Phase3–5 State reads and Phase6 upgrade reused PASS; Phase2 fixture NOT_TESTED.
 Renderer root cause status and remaining blockers:
 [final closeout](PHASE_7A_FINAL_CLOSEOUT_REPORT.md).
 
 Latest detailed coverage: [API26/29 execution](PHASE_7_API26_29_COMPATIBILITY_REPORT.md).
 Fresh release-specific [asset license review](PHASE_7_GAMEPLAY_LICENSE_REVIEW.md)
-identified mixed/restricted terms; no new game acquired or played. Full-game categories
-remain MISSING. Remote CI PASS (run 37740246698). Phase7 remains NOT READY.
+retains mixed/restricted candidates and adds two audited official homebrews acquired locally.
+[Gameplay execution](PHASE_7_GAMEPLAY_EXECUTION_REPORT.md) records real results and limits.
+Remote CI PASS (run37751328064). Phase7 remains NOT READY; Manual PENDING_USER.

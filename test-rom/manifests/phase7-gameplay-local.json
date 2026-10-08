@@ -1,0 +1,43 @@
+{
+  "scope": "Opt-in local staged tests only; no ROM bytes in repository or APK; no automatic acquisition",
+  "games": [
+    {
+      "id": "blob-v1.1",
+      "name": "Blob Goes 3D",
+      "filename": "blob-goes-3d-v1.1.gba",
+      "repository": "https://github.com/MilanFIN/blob-goes-3d",
+      "revision": "5e5bbca3fd9708f7d7300a0b3ff6ddf3957fbbab",
+      "version": "v1.1",
+      "url": "https://github.com/MilanFIN/blob-goes-3d/releases/download/v1.1/blobgoes3d.gba",
+      "sha256": "313cbb23444ef35497b4de23a459311f732c885d392f5e465ebe1861a26746f4",
+      "bytes": 378752,
+      "license": "MIT; original procedural geometry/font/PSG sound; dependencies retain their own notices",
+      "categories": [
+        "platformer",
+        "high-load / 3D"
+      ],
+      "redistribution": "Conditional on retaining all upstream copyright/license notices; no ROM redistributed here",
+      "ciEligibility": "Source/notice audit required if future CI distribution is enabled; not enabled"
+    },
+    {
+      "id": "hyperspace-v0.25.0",
+      "name": "Hyperspace Roll",
+      "filename": "hyperspace-roll-agb-v0.25.0.gba",
+      "repository": "https://github.com/agbrs/agb",
+      "revision": "1c2842c954fe1dd40a4b0ce0fbecf4ab7157745a",
+      "version": "agb v0.25.0; game Cargo version 0.1.0",
+      "url": "https://github.com/agbrs/agb/releases/download/v0.25.0/examples.zip",
+      "archiveEntry": "examples/hyperspace-roll.gba",
+      "archiveSha256": "5afdb763660c07370211b20770aeed57a8108aa96b7adb3aa8902ddcdd67d67e",
+      "sha256": "de5a61698452d5f409970f1f5e042d0d4ace21ccc0ea7d2a770b8c311b8f3c57",
+      "bytes": 6948016,
+      "license": "Root MPL-2.0; Pixelated font CC-BY-SA-3.0; agbabi subset zlib; root README music attribution CC-BY-4.0 and logo CC-BY-SA-4.0 must be retained where applicable",
+      "categories": [
+        "dice battle / action-adjacent",
+        "audio-heavy"
+      ],
+      "redistribution": "Conditional on upstream notices/source and asset attribution/share-alike obligations; local testing only, no ROM redistribution",
+      "ciEligibility": "NOT_ENABLED; requires a complete redistribution/source-offer/asset attribution package before CI vendoring or ROM artifact upload"
+    }
+  ]
+}
