@@ -222,7 +222,8 @@ class RendererExperienceTest {
             compose.runOnUiThread { compose.activity.requestedOrientation=ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE }
             Thread.sleep(500);compose.waitForIdle()
             compose.onNodeWithText("菜单",useUnmergedTree=true).performClick()
-            compose.onNodeWithText("设置",useUnmergedTree=true).performClick()
+            compose.waitUntil(5000) {compose.onAllNodesWithTag("pause-root").fetchSemanticsNodes().isNotEmpty()}
+            compose.onNodeWithText("设置",useUnmergedTree=true).performScrollTo().performClick()
             compose.onNodeWithText("显示").performClick()
             for(tone in listOf(BackgroundTone.WHITE,BackgroundTone.BLACK)) {
                 compose.onNodeWithTag("settings-list").performScrollToNode(hasTestTag("background-${tone.name}"))
@@ -249,7 +250,8 @@ class RendererExperienceTest {
                 assertEquals(tone,model().displaySettings.background)
                 // Compose dialogs are transient; reopen settings after Activity recreation.
                 compose.onNodeWithText("菜单",useUnmergedTree=true).performClick()
-                compose.onNodeWithText("设置",useUnmergedTree=true).performClick()
+                compose.waitUntil(5000) {compose.onAllNodesWithTag("pause-root").fetchSemanticsNodes().isNotEmpty()}
+                compose.onNodeWithText("设置",useUnmergedTree=true).performScrollTo().performClick()
                 compose.onNodeWithText("显示").performClick()
             }
         } finally { compose.runOnUiThread { m.display(original) };runBlocking { m.session.stop() } }
