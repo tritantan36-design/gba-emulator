@@ -207,9 +207,17 @@ class LibraryExperienceTest {
             !compose.activity.lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED)
         }
         assertFalse(compose.activity.lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.STARTED))
-        instrumentation.targetContext.startActivity(Intent(instrumentation.targetContext,MainActivity::class.java)
-            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_REORDER_TO_FRONT))
-        compose.waitUntil(15000) {compose.activity.hasWindowFocus() && !model().loading && model().message?.startsWith("无法读取游戏文件")==true}
+        // API29 logs "Activity start request ... stopped" for the background context
+        // request. Match the existing renderer Home test: SINGLE_TOP keeps the observed
+        // Activity/session, while the test shell brings its task forward.
+        instrumentation.uiAutomation.executeShellCommand("am start -W -n dev.gbalite.app/.MainActivity -f 0x30020000").use {descriptor ->
+            val result=android.os.ParcelFileDescriptor.AutoCloseInputStream(descriptor).bufferedReader().use {it.readText()}
+            assertTrue("Foreground return failed: $result",result.contains("Status: ok"))
+        }
+        try {compose.waitUntil(15000) {
+            var focused=false;compose.runOnUiThread {focused=compose.activity.hasWindowFocus()}
+            focused && !model().loading && model().message?.startsWith("无法读取游戏文件")==true
+        }} catch(e: Throwable) {throw AssertionError("Home return: focus=${compose.activity.hasWindowFocus()} lifecycle=${compose.activity.lifecycle.currentState} loading=${model().loading} message=${model().message}",e)}
         assertEquals(before,model().library.map {it.record.gameId}.toSet());assertEquals(last,model().lastGame)
         assertNull(model().imported)
         assertEquals(oldTemps,root.listFiles()?.filter {it.name.startsWith("rom.tmp.") }?.map {it.name}?.toSet() ?: emptySet<String>())
