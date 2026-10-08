@@ -24,3 +24,13 @@ bottom-navigation. Portrait/player,landscape/pause/settings captures visually
 inspected. Solid red is the original lawful persistence test framebuffer, not a crash
 or a screenshot substitute. Final regression and Round B will refine this checkpoint.
 Existing source/renderer historical risks remain monitored, not root-cause-fixed.
+
+
+## Final checkpoint note
+
+Round B and final responsive refinements are now implemented; see
+[Phase7.5 final report](PHASE_7_5_UI_UX_POLISH_REPORT.md) for authoritative candidate
+identity, mixed regression results, open performance qualification and manual status.
+The round-a/ screenshot filenames now contain the final API36 candidate captures;
+they must not be treated as the original API29 checkpoint image bytes. Initial
+instrumentation/build logs remain retained. Phase7/7.5 NOT_READY; Manual PENDING_USER.

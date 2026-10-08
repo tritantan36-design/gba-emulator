@@ -1,5 +1,10 @@
 # Phase 7A Final Closeout
 
+> 2026-10-08 Phase7.5 后续更新：用户要求先完成7.5再合并验收；Round A+B UI已实现，
+> Phase7/7.5仍NOT_READY，Manual PENDING_USER，Phase8 NOT_STARTED。
+> 当前0.7.5候选、定向结果与合并清单见 [7.5报告](PHASE_7_5_UI_UX_POLISH_REPORT.md)。
+> 下文7.5未启动、0.7.0候选及旧CI属于本报告历史收尾时点，不是当前交接包。
+
 2026-10-08 最新剩余缺口执行（以下历史章节不作为当前阻塞清单）：
 代码提交 `280782965cc2ceb4a3354ba8e26cdde1072aaae7` 已推送到用户指定仓库；
 [Remote CI run37751328064](https://github.com/tritantan36-design/gba-emulator/actions/runs/37751328064)

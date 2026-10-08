@@ -1,5 +1,8 @@
 # Phase 7 Remote CI execution
 
+> Phase7.5后续的0.7.5候选、真实新CI与分批定向结果见 [7.5报告](PHASE_7_5_UI_UX_POLISH_REPORT.md)。
+> 本文保留Phase7/0.7.0历史范围，不替代最新人工交接及开放性能项。
+
 2026-10-08，Asia/Shanghai。**Remote CI PASS**。
 Repository: [tritantan36-design/gba-emulator](https://github.com/tritantan36-design/gba-emulator)；
 branch `main`；tested commit `280782965cc2ceb4a3354ba8e26cdde1072aaae7`。

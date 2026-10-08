@@ -1,5 +1,10 @@
 # Phase 7 remaining gaps closeout
 
+> 2026-10-08 Phase7.5 后续更新：用户要求先完成7.5再合并验收；Round A+B UI已实现，
+> Phase7/7.5仍NOT_READY，Manual PENDING_USER，Phase8 NOT_STARTED。
+> 当前0.7.5候选、定向结果与合并清单见 [7.5报告](PHASE_7_5_UI_UX_POLISH_REPORT.md)。
+> 下文7.5未启动、0.7.0候选及旧CI属于本报告历史收尾时点，不是当前交接包。
+
 2026-10-08，Asia/Shanghai。**Phase7A / Phase7 NOT READY；Manual PENDING_USER**。
 用户提供 GitHub 地址后继续实际执行；无 remote / 无 HEAD 已不是当前阻塞。
 保留远程原始 main 历史，没有 force-push。代码验证提交：

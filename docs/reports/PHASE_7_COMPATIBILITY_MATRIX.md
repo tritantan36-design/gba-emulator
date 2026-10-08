@@ -1,5 +1,8 @@
 # Phase 7 compatibility matrix
 
+> Phase7.5后续的0.7.5候选、真实新CI与分批定向结果见 [7.5报告](PHASE_7_5_UI_UX_POLISH_REPORT.md)。
+> 本文保留Phase7/0.7.0历史范围，不替代最新人工交接及开放性能项。
+
 Updated: 2026-10-08. Phase7A automatic gates BLOCKED / NOT READY. Only executed checks are marked PASS.
 Host video/PCM and native mailbox checks do not establish human visual/audio or
 physical controller acceptance. Historical Phase 0–6 acceptance is not new Phase 7
