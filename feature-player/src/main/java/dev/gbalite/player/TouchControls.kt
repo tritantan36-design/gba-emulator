@@ -2,6 +2,10 @@ package dev.gbalite.player
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.RectF
+import android.animation.ValueAnimator
+import androidx.compose.ui.graphics.toArgb
+import dev.gbalite.player.ui.UiColors
 import android.view.MotionEvent
 import android.view.View
 import dev.gbalite.input.*
@@ -19,27 +23,73 @@ class TouchControls(context: Context,private val router: InputRouter): View(cont
     private var dragPointer=-1
     private var pointers=emptySet<String>()
     private fun base()=if(profile.landscape) min(width,height)*1.45f else width.toFloat()
+    private val rect=RectF()
+    private var pressed=emptySet<String>()
+    private var fading=emptySet<String>()
+    private var fade=0f
+    private val feedback=ValueAnimator.ofFloat(1f,0f).apply {
+        duration=100
+        addUpdateListener {fade=it.animatedValue as Float;invalidate()}
+    }
+    private fun pressed(keys: Set<String>) {
+        if(keys==pressed) return
+        fading=pressed-keys;pressed=keys
+        feedback.cancel();feedback.start();invalidate()
+    }
+    private fun extents(c: TouchControl,r: Float): Pair<Float,Float> = when(c.key) {
+        "L","R" -> r*1.20f to maxOf(24*resources.displayMetrics.density,r*.40f)
+        "START","SELECT" -> r to maxOf(24*resources.displayMetrics.density,r*.38f)
+        else -> r to r
+    }
     private fun geometry(c: TouchControl): Triple<Float,Float,Float> {
         val r=min(maxOf(c.size*base()/2,24*resources.displayMetrics.density),min(width,height)*.45f)
-        return Triple((c.x*width).coerceIn(r,width-r),(c.y*height).coerceIn(r,height-r),r)
+        val (rx,ry)=extents(c,r)
+        return Triple(if(width>=2*rx) (c.x*width).coerceIn(rx,width-rx) else width/2f,if(height>=2*ry) (c.y*height).coerceIn(ry,height-ry) else height/2f,r)
     }
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        val density=resources.displayMetrics.density
         for(c in profile.controls) {
-            val (x,y,r)=geometry(c)
-            paint.color=0xff29445b.toInt(); paint.alpha=(profile.opacity*255).toInt()
+            val (x,y,r)=geometry(c);val (rx,ry)=extents(c,r)
+            val amount=if(c.key in pressed) 1f else if(c.key in fading) fade else 0f
+            val alpha=(profile.opacity*255).toInt()
+            val face=if(c.key=="A" || c.key=="B") UiColors.Action.toArgb() else UiColors.Control.toArgb()
+            fun shape(inset: Float=0f,dy: Float=0f) {
+                if(c.key=="A" || c.key=="B") canvas.drawCircle(x,y+dy,r-inset,paint)
+                else {
+                    rect.set(x-rx+inset,y-ry+inset+dy,x+rx-inset,y+ry-inset+dy)
+                    canvas.drawRoundRect(rect,if(c.key=="DPAD") 16*density else ry,if(c.key=="DPAD") 16*density else ry,paint)
+                }
+            }
+            paint.style=Paint.Style.FILL;paint.alpha=alpha;paint.color=UiColors.ControlEdge.toArgb();shape(dy=3*density)
+            paint.color=face;paint.alpha=alpha;shape()
+            paint.color=UiColors.ControlLight.toArgb();paint.alpha=(alpha*(.25f+amount*.50f)).toInt();shape(inset=density)
+            paint.color=face;paint.alpha=alpha;shape(inset=2*density,dy=amount*density)
             if(c.key=="DPAD") {
-                canvas.drawRoundRect(x-r/3,y-r,x+r/3,y+r,12f,12f,paint)
-                canvas.drawRoundRect(x-r,y-r/3,x+r,y+r/3,12f,12f,paint)
-            } else canvas.drawCircle(x,y,r,paint)
-            paint.color=0xffffffff.toInt(); paint.alpha=230; paint.textAlign=Paint.Align.CENTER
-            paint.textSize=if(c.key.length>1) r*.42f else r*.8f
-            canvas.drawText(if(c.key=="DPAD") "+" else c.key,x,y-(paint.ascent()+paint.descent())/2,paint)
+                // Full backplate preserves the existing square diagonal interaction bounds.
+                paint.color=UiColors.ControlEdge.toArgb();paint.alpha=alpha
+                canvas.drawRoundRect(x-r*.32f,y-r*.90f,x+r*.32f,y+r*.90f,4*density,4*density,paint)
+                canvas.drawRoundRect(x-r*.90f,y-r*.32f,x+r*.90f,y+r*.32f,4*density,4*density,paint)
+                paint.color=UiColors.ControlLight.toArgb();paint.alpha=alpha
+                canvas.drawCircle(x,y,r*.17f,paint)
+                paint.color=0xffb9bec9.toInt();paint.alpha=(alpha*.7f).toInt();paint.textSize=r*.25f;paint.textAlign=Paint.Align.CENTER
+                canvas.drawText("↑",x,y-r*.59f,paint);canvas.drawText("↓",x,y+r*.76f,paint)
+                canvas.drawText("‹",x-r*.67f,y+r*.09f,paint);canvas.drawText("›",x+r*.67f,y+r*.09f,paint)
+            } else {
+                paint.color=0xfff6f5f8.toInt();paint.alpha=alpha;paint.textAlign=Paint.Align.CENTER
+                paint.typeface=android.graphics.Typeface.create(android.graphics.Typeface.DEFAULT,android.graphics.Typeface.BOLD)
+                paint.textSize=if(c.key.length>1) min(13*density,r*.42f) else if(c.key=="L" || c.key=="R") 16*density else r*.70f
+                canvas.drawText(c.key,x,y-(paint.ascent()+paint.descent())/2+amount*density,paint)
+            }
+            if(editing && c.key==selectedKey) {
+                paint.style=Paint.Style.STROKE;paint.strokeWidth=2*density;paint.color=0xffcbb7ef.toInt();paint.alpha=255;shape();paint.style=Paint.Style.FILL
+            }
         }
     }
+    var selectedKey="A";set(value) {field=value;invalidate()}
     private fun hit(x: Float,y: Float): TouchControl?=profile.controls.firstOrNull {
-        val (cx,cy,r)=geometry(it)
-        if(it.key=="DPAD") kotlin.math.abs(x-cx)<=r && kotlin.math.abs(y-cy)<=r
+        val (cx,cy,r)=geometry(it);val (rx,ry)=extents(it,r)
+        if(it.key in setOf("DPAD","L","R","START","SELECT")) kotlin.math.abs(x-cx)<=rx && kotlin.math.abs(y-cy)<=ry
         else (x-cx)*(x-cx)+(y-cy)*(y-cy)<=r*r
     }
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -60,6 +110,7 @@ class TouchControls(context: Context,private val router: InputRouter): View(cont
             return true
         }
         val active=mutableSetOf<String>()
+        val visual=mutableSetOf<String>()
         val observed=(0 until event.pointerCount).map { "touch:${event.getPointerId(it)}" }.toSet()
         if((pointers-observed).isNotEmpty()) { router.releaseAll(); release(); return true }
         for(i in 0 until event.pointerCount) {
@@ -72,14 +123,15 @@ class TouchControls(context: Context,private val router: InputRouter): View(cont
             val keys=if(c==null) emptySet() else if(c.key=="DPAD") {
                 val (x,y,r)=geometry(c); dpad((event.getX(i)-x)/r,(event.getY(i)-y)/r)
             } else setOf(GbaButton.valueOf(c.key))
+            if(keys.isNotEmpty()) c?.let {visual+=it.key}
             router.update(source,keys)
         }
-        (pointers-active).forEach(router::releaseSource); pointers=active
+        (pointers-active).forEach(router::releaseSource); pointers=active;pressed(visual)
         if(event.actionMasked==MotionEvent.ACTION_UP) { release(); performClick() }
         return true
     }
     override fun performClick(): Boolean { super.performClick(); return true }
-    fun release() { router.releasePrefix("touch:"); pointers=emptySet(); dragKey=null; dragPointer=-1 }
+    fun release() { router.releasePrefix("touch:"); pointers=emptySet(); dragKey=null; dragPointer=-1;pressed(emptySet()) }
     override fun onDetachedFromWindow() { router.releaseAll(); release(); super.onDetachedFromWindow() }
     override fun onWindowFocusChanged(hasWindowFocus: Boolean) { if(!hasWindowFocus) release(); super.onWindowFocusChanged(hasWindowFocus) }
 }

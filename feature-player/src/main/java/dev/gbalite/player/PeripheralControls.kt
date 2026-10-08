@@ -17,7 +17,9 @@ import dev.gbalite.core.*
 @Composable fun PeripheralDialog(s: PeripheralSettings,change: (PeripheralSettings)->Unit,detected: Int,
     tilt: Boolean,gyro: Boolean,light: Boolean,haptic: String,done: ()->Unit,calibrate: ()->Unit,manual: (() -> Unit)?) {
     AlertDialog(onDismissRequest=done,title={Text("外设")},confirmButton={TextButton(onClick=done) { Text("返回菜单") }},
-        text={Column(Modifier.verticalScroll(rememberScrollState())) {
+        text={Column(Modifier.verticalScroll(rememberScrollState())) {PeripheralContent(s,change,detected,tilt,gyro,light,haptic,calibrate,manual)}})
+}
+@Composable fun ColumnScope.PeripheralContent(s: PeripheralSettings,change: (PeripheralSettings)->Unit,detected: Int,tilt: Boolean,gyro: Boolean,light: Boolean,haptic: String,calibrate: ()->Unit,manual: (() -> Unit)?) {
             Text("实时时钟：自动（系统时间）")
             fun availability(flag: Int,available: Boolean)=if(detected and flag==0) "游戏未自动检测到；可手动启用"
                 else if(available) "设备支持" else "设备不支持，使用手动控制"
@@ -34,7 +36,6 @@ import dev.gbalite.core.*
             Text("真实震动当前未启用")
             Text(if(haptic.contains("BLOCKED_BY_PERMISSION_APPROVAL")) "为保持零权限，游戏震动暂不可用。" else haptic,
                 style=MaterialTheme.typography.bodySmall)
-        }})
 }
 @Composable private fun ModeSelector(title: String,mode: PeripheralMode,status: String,select: (PeripheralMode)->Unit) {
     Text(title);Text(status,style=MaterialTheme.typography.bodySmall)
