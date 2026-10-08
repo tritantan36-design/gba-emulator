@@ -1,6 +1,7 @@
 package dev.gbalite.app
 
 import android.os.Bundle
+import androidx.compose.ui.graphics.toArgb
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -46,6 +47,13 @@ class MainActivity: ComponentActivity() {
                     controller.systemBarsBehavior=androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
                     controller.hide(androidx.core.view.WindowInsetsCompat.Type.systemBars())
                 } else controller.show(androidx.core.view.WindowInsetsCompat.Type.systemBars())
+                @Suppress("DEPRECATION")
+                if(android.os.Build.VERSION.SDK_INT<35) {
+                    val chrome=if(model.playing && !model.appSettings) {
+                        if(lightBackground) android.graphics.Color.WHITE else android.graphics.Color.BLACK
+                    } else dev.gbalite.player.ui.UiColors.Background.toArgb()
+                    window.statusBarColor=chrome;window.navigationBarColor=chrome
+                }
                 controller.isAppearanceLightStatusBars=!model.playing || model.appSettings || lightBackground
                 controller.isAppearanceLightNavigationBars=!model.playing || model.appSettings || lightBackground
                 window.attributes=window.attributes.apply {

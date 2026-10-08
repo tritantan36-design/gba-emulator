@@ -177,7 +177,7 @@ import java.io.File
                 val actions=listOf(Triple("继续","play","回到游戏"),Triple("保存存档","save","Quick · 4 Slots"),
                     Triple("读取存档","load","恢复游戏进度"),Triple("显示与控制","controls","画面 · 按键布局"),
                     Triple("快进 / 倒带","speed",if(toggled) "持续 ${multiplier}×" else "当前 1×"),Triple("退出游戏","exit","保存后返回首页"))
-                actions.chunked(2).forEach {pair -> Row(horizontalArrangement=Arrangement.spacedBy(UiSpacing.sm)) {
+                actions.chunked(if(landscape) 3 else 2).forEach {pair -> Row(horizontalArrangement=Arrangement.spacedBy(UiSpacing.sm)) {
                     pair.forEach { (title,icon,summary) -> QuickAction(title,icon,summary,Modifier.weight(1f),enabled=!saving,primary=title=="继续",danger=title=="退出游戏") {
                         when(title) {"继续"->resume();"保存存档"->pausePage="save";"读取存档"->pausePage="load";"显示与控制"->pausePage="controls";"快进 / 倒带"->pausePage="speed";else->{session.input.releaseAll();onExit()}}
                     }

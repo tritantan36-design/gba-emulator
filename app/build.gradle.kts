@@ -10,8 +10,8 @@ android {
         minSdk = 26
         applicationId = "dev.gbalite.app"
         targetSdk = 36
-        versionCode = 7
-        versionName = "0.7.0"
+        versionCode = 8
+        versionName = "0.7.5"
 
         ndk { abiFilters += "arm64-v8a" }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

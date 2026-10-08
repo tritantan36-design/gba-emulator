@@ -14,6 +14,7 @@ import kotlin.math.min
 
 /** All pointers are hit-tested every event, including slides and cancellation. */
 class TouchControls(context: Context,private val router: InputRouter): View(context) {
+    init {contentDescription="GBA 触控：方向键、A、B、L、R、Start、Select"}
     var profile=InputProfile.default(false); set(value) { field=value; invalidate() }
     var editing=false
     var onEdited: (InputProfile)->Unit={}
@@ -38,7 +39,7 @@ class TouchControls(context: Context,private val router: InputRouter): View(cont
     }
     private fun extents(c: TouchControl,r: Float): Pair<Float,Float> = when(c.key) {
         "L","R" -> r*1.20f to maxOf(24*resources.displayMetrics.density,r*.40f)
-        "START","SELECT" -> r to maxOf(24*resources.displayMetrics.density,r*.38f)
+        "START","SELECT" -> maxOf(36*resources.displayMetrics.density,r*1.25f) to maxOf(24*resources.displayMetrics.density,r*.38f)
         else -> r to r
     }
     private fun geometry(c: TouchControl): Triple<Float,Float,Float> {
@@ -132,6 +133,6 @@ class TouchControls(context: Context,private val router: InputRouter): View(cont
     }
     override fun performClick(): Boolean { super.performClick(); return true }
     fun release() { router.releasePrefix("touch:"); pointers=emptySet(); dragKey=null; dragPointer=-1;pressed(emptySet()) }
-    override fun onDetachedFromWindow() { router.releaseAll(); release(); super.onDetachedFromWindow() }
+    override fun onDetachedFromWindow() { router.releaseAll(); release(); feedback.cancel(); super.onDetachedFromWindow() }
     override fun onWindowFocusChanged(hasWindowFocus: Boolean) { if(!hasWindowFocus) release(); super.onWindowFocusChanged(hasWindowFocus) }
 }

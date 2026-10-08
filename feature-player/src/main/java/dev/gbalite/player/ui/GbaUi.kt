@@ -83,6 +83,9 @@ private val dark=darkColorScheme(primary=Color(0xffd3bff2),onPrimary=UiColors.In
             "exit"->{line(10f,4f,4f,4f);line(4f,4f,4f,20f);line(4f,20f,10f,20f);line(9f,12f,21f,12f);line(16f,7f,21f,12f);line(21f,12f,16f,17f)}
             "audio"->{line(5f,9f,9f,9f);line(9f,9f,14f,5f);line(14f,5f,14f,19f);line(14f,19f,9f,15f);line(9f,15f,5f,15f);line(5f,15f,5f,9f);line(18f,8f,20f,12f);line(20f,12f,18f,16f)}
             "search"->{drawCircle(color,6*unit,Offset(10*unit,10*unit),style=stroke);line(15f,15f,21f,21f)}
+            "settings"->{line(5f,7f,19f,7f);line(5f,17f,19f,17f);drawCircle(color,3*unit,Offset(9*unit,7*unit),style=stroke);drawCircle(color,3*unit,Offset(15*unit,17*unit),style=stroke)}
+            "about"->{drawCircle(color,9*unit,center,style=stroke);line(12f,11f,12f,17f);drawCircle(color,unit,Offset(12*unit,7*unit))}
+            "peripherals"->{box(7f,3f,10f,14f);line(10f,7f,14f,7f);line(12f,17f,12f,21f);line(9f,21f,15f,21f)}
             "menu"->{line(5f,7f,19f,7f);line(5f,12f,19f,12f);line(5f,17f,19f,17f)}
             "check"->{line(5f,12f,10f,17f);line(10f,17f,19f,7f)}
             else->{drawCircle(color,9*unit,center,style=stroke);drawCircle(color,2*unit,center,style=stroke)}

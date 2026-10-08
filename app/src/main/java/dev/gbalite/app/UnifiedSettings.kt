@@ -2,6 +2,8 @@ package dev.gbalite.app
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -97,7 +99,7 @@ import kotlinx.coroutines.withContext
                         item {InfoText("数据保存在应用私有空间。移出游戏库会保留存档与截图；卸载或清除应用数据会删除它们。")}
                     }
                     "关于" -> {
-                        item {GbaSectionHeader("GBA Lite 0.7.0")}
+                        item {GbaSectionHeader("GBA Lite 0.7.5")}
                         item {InfoText("专注 GBA，完全离线。\n无广告 · 无 Analytics · 无网络权限\nmGBA 0.10.5 · Oboe 1.9.3")}
                         item {GbaSectionHeader("开源许可")}
                         items(4) {i ->val file=listOf("APP-LICENSE.txt","NOTICE.txt","mGBA-LICENSE.txt","Oboe-LICENSE.txt")[i]
@@ -142,7 +144,11 @@ internal fun displayName(mode: DisplayMode)=when(mode) {DisplayMode.ORIGINAL->"O
         }
     }
     BoxWithConstraints(Modifier.fillMaxSize()) {
-        if(maxWidth>maxHeight) Row(Modifier.fillMaxSize()) {Preview(Modifier.weight(1f).fillMaxHeight().padding(UiSpacing.sm));Tools(Modifier.width(300.dp))}
+        if(maxWidth>maxHeight) Row(Modifier.fillMaxSize()) {Preview(Modifier.weight(1f).fillMaxHeight().padding(UiSpacing.sm));Tools(Modifier.width(300.dp).fillMaxHeight().verticalScroll(rememberScrollState()))}
+        else if(maxHeight<600.dp || androidx.compose.ui.platform.LocalDensity.current.fontScale>1.2f) LazyColumn(Modifier.fillMaxSize()) {
+            item {Preview(Modifier.height(240.dp).fillMaxWidth().padding(horizontal=UiSpacing.lg))}
+            item {Tools(Modifier.fillMaxWidth())}
+        }
         else Column(Modifier.fillMaxSize()) {Preview(Modifier.weight(1f).fillMaxWidth().padding(horizontal=UiSpacing.lg));Tools(Modifier.fillMaxWidth())}
     }
 }
