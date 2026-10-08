@@ -23,31 +23,37 @@ class PlayerExperienceTest {
     @Test fun fastForwardHoldToggleRewindAndBackground() {
         val m=open()
         compose.onNodeWithText("菜单",useUnmergedTree=true).performClick(); compose.waitUntil(5000) { compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("快进 / 倒带").performScrollTo().performClick()
         compose.onNodeWithText("2×",useUnmergedTree=true).performScrollTo().performClick()
         compose.waitUntil(5000) { m.session.playerMetrics().speed==2 }
         compose.onNodeWithText("菜单 · 2×").performClick(); compose.waitUntil(5000) { compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("继续").performClick()
         compose.waitUntil(5000) { m.session.playerMetrics().speed==2 && compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isEmpty() }
         compose.onNodeWithText("菜单 · 2×").performClick(); compose.waitUntil(5000) { compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("快进 / 倒带").performScrollTo().performClick()
         compose.onNodeWithText("关闭快进（恢复1×）",useUnmergedTree=true).performScrollTo().performClick()
         compose.waitUntil(5000) { m.session.playerMetrics().speed==1 }
         for(n in listOf(4,8)) {
             compose.waitUntil(5000) { compose.onAllNodesWithText("菜单",useUnmergedTree=true).fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithText("菜单",useUnmergedTree=true).performClick()
             compose.waitUntil(5000) { compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithText("快进 / 倒带").performScrollTo().performClick()
             compose.onNodeWithText("$n×",useUnmergedTree=true).performScrollTo().performClick()
             compose.waitUntil(5000) { m.session.playerMetrics().speed==n && compose.onAllNodesWithText("菜单 · $n×").fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithText("菜单 · $n×").performClick()
             compose.waitUntil(5000) { compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithText("快进 / 倒带").performScrollTo().performClick()
             compose.onNodeWithText("关闭快进（恢复1×）",useUnmergedTree=true).performScrollTo().performClick()
             compose.waitUntil(5000) { m.session.playerMetrics().speed==1 }
         }
         compose.waitUntil(5000) { compose.onAllNodesWithText("菜单",useUnmergedTree=true).fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("菜单",useUnmergedTree=true).performClick(); compose.waitUntil(5000) { compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isNotEmpty() }
         // Select 2x again, then reopen to exercise hold at that selected multiplier.
+        compose.onNodeWithText("快进 / 倒带").performScrollTo().performClick()
         compose.onNodeWithText("2×",useUnmergedTree=true).performScrollTo().performClick()
         compose.waitUntil(5000) { compose.onAllNodesWithText("菜单 · 2×").fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("菜单 · 2×").performClick(); compose.waitUntil(5000) { compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("快进 / 倒带").performScrollTo().performClick()
         compose.onNodeWithText("快进（按住）",useUnmergedTree=true).performScrollTo().performClick()
         compose.waitUntil(5000) { compose.onAllNodesWithText("按住快进 2×").fetchSemanticsNodes().isNotEmpty() }
         compose.onNodeWithText("按住快进 2×").performTouchInput { down(center) }
@@ -56,6 +62,7 @@ class PlayerExperienceTest {
         compose.waitUntil(5000) { m.session.playerMetrics().speed==1 }
         runBlocking { m.session.setSpeed(8) }; Thread.sleep(2500); runBlocking { m.session.setSpeed(1) }
         compose.onNodeWithText("完成").performClick(); compose.waitUntil(5000) { compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithText("快进 / 倒带").performScrollTo().performClick()
         compose.onNodeWithText("倒带（按住）",useUnmergedTree=true).performScrollTo().performClick()
         compose.waitUntil(5000) { compose.onAllNodesWithText("按住倒带").fetchSemanticsNodes().isNotEmpty() }
         val before=m.session.playerMetrics().rewindSnapshots

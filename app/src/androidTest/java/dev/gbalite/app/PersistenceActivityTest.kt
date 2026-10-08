@@ -48,6 +48,11 @@ import java.io.File
         compose.waitUntil(10000) { File(persistence(),"$key/current.json").exists() }
     }
     private fun stateOperation(label: String,key: String?=null) {
+        val page=if(label.startsWith("读取") || label=="Quick Load") "load" else "save"
+        if(compose.onAllNodesWithTag("pause-$page").fetchSemanticsNodes().isEmpty()) {
+            if(compose.onAllNodesWithTag("pause-root").fetchSemanticsNodes().isEmpty()) compose.onNodeWithContentDescription("返回菜单").performClick()
+            compose.onNodeWithText(if(page=="load") "读取存档" else "保存存档").performScrollTo().performClick()
+        }
         val manifest=key?.let {File(persistence(),"$it/current.json")}
         val before=manifest?.takeIf {it.exists()}?.readText()
         compose.onNodeWithText(label,useUnmergedTree=true).performScrollTo()
@@ -69,6 +74,7 @@ import java.io.File
         }
         stateOperation("Quick Save","quick")
         stateOperation("Quick Load")
+        compose.onNodeWithContentDescription("返回菜单").performClick()
         compose.onNodeWithText("继续").performClick()
         compose.activityRule.scenario.moveToState(Lifecycle.State.CREATED)
         waitFile("battery"); waitFile("auto-a")

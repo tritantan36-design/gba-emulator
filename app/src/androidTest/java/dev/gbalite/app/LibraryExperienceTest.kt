@@ -43,7 +43,7 @@ class LibraryExperienceTest {
         val filter=android.content.IntentFilter(Intent.ACTION_OPEN_DOCUMENT).apply {addCategory(Intent.CATEGORY_OPENABLE);addDataType("*/*")}
         val monitor=android.app.Instrumentation.ActivityMonitor(filter,android.app.Instrumentation.ActivityResult(android.app.Activity.RESULT_OK,Intent().setData(uri)),true)
         instrumentation.addMonitor(monitor)
-        try {compose.onNodeWithText(button).performClick();compose.waitForIdle()}
+        try {val target=compose.onNodeWithText(button);if(button!="添加游戏") compose.onNodeWithTag("game-details").performScrollToNode(hasText(button));target.performClick();compose.waitForIdle()}
         finally {instrumentation.removeMonitor(monitor)}
     }
     private fun add(name: String) {select(name);compose.waitUntil(10000) {!model().loading && model().imported!=null}}
@@ -103,11 +103,13 @@ class LibraryExperienceTest {
         compose.onNodeWithTag("game-${id.value}").assertExists()
         compose.onNodeWithTag("library-search").performTextInput(model().imported!!.displayName)
         compose.onNodeWithText("详情").performClick()
+        compose.onNodeWithTag("game-details").performScrollToNode(hasText("重命名"))
         compose.onNodeWithText("重命名").performClick()
         compose.waitUntil(5000) {compose.onAllNodes(hasSetTextAction()).fetchSemanticsNodes().size==1}
         compose.onNode(hasSetTextAction()).performTextReplacement("Phase 6 Test")
         compose.onNodeWithText("保存名称").performClick();compose.waitUntil(5000) {model().library.any {it.record.gameId==id && it.record.displayName=="Phase 6 Test"}}
-        compose.onNodeWithText("重新选择原 ROM").assertExists();compose.onNodeWithText("存档管理 · 4 个存档位").assertExists()
+        compose.onNodeWithTag("game-details").performScrollToNode(hasText("存档管理 · 4 个存档位"))
+        compose.onNodeWithText("存档管理 · 4 个存档位").assertExists()
         select("phase6-other.gba","重新选择原 ROM")
         compose.waitUntil(10000) {!model().loading && model().message=="选择的文件与原游戏不匹配"}
         assertEquals("Phase 6 Test",model().library.first {it.record.gameId==id}.record.displayName)
@@ -115,13 +117,13 @@ class LibraryExperienceTest {
         compose.waitUntil(10000) {!model().loading && model().imported?.gameId==id}
         back();compose.onNodeWithTag("library-search").performTextClearance()
         compose.onNodeWithText("排序：最近游玩").performClick();compose.onNodeWithText("游戏时长",useUnmergedTree=true).performClick()
-        compose.onNodeWithText("设置",useUnmergedTree=true).performClick()
+        compose.onNodeWithTag("nav-设置").performClick()
         compose.onNodeWithTag("settings-list").performScrollToNode(hasText("外设"))
         compose.onNodeWithText("外设").performClick();compose.onNodeWithText("真实震动当前未启用").assertExists();back()
         compose.onNodeWithText("显示").performClick();compose.onNodeWithText("显示模式").assertExists();back()
         compose.onNodeWithText("控制").performClick();compose.onNodeWithText("竖屏布局").assertExists();back()
         compose.onNodeWithText("关于").performClick();compose.onNodeWithText("开源许可 · mGBA").performScrollTo().performClick();compose.onNodeWithText("Mozilla Public License",substring=true).assertExists();back();back();back()
-        compose.onNodeWithText("游戏库",useUnmergedTree=true).performClick()
+        compose.onNodeWithTag("nav-游戏库").performClick()
         compose.onNodeWithTag("library-search").performTextClearance();compose.onNodeWithTag("library-search").performTextInput("Phase 6 Test")
         compose.onNodeWithText("详情").performClick()
         compose.onNode(hasScrollToNodeAction()).performScrollToNode(hasText("移出游戏库"))
@@ -170,7 +172,7 @@ class LibraryExperienceTest {
         val fake=(0 until 500).map {n ->LibraryGame(GameRecord(GameId.fromBytes("fake$n".toByteArray()),"Test Game %03d".format(n),"content://synthetic/$n"),"2026-10-07","2026-10-07",n*1000L,false)}
         val start=android.os.SystemClock.elapsedRealtime()
         compose.runOnUiThread {compose.activity.setContent {MaterialTheme {AppShell(m,fake)}}}
-        compose.onNodeWithText("游戏库",useUnmergedTree=true).performClick()
+        compose.onNodeWithTag("nav-游戏库").performClick()
         compose.onNodeWithTag("library-list").performScrollToIndex(499);compose.onNodeWithText("Test Game 499").assertIsDisplayed()
         compose.onNodeWithTag("library-search").performTextInput("game 499");compose.onNodeWithText("Test Game 499").assertExists()
         File(compose.activity.filesDir,"phase6-library-ui-metrics.txt").writeText("Synthetic 500 metadata, list scroll and search elapsedMs=${android.os.SystemClock.elapsedRealtime()-start}; no ROM reads or DB insert.\n")

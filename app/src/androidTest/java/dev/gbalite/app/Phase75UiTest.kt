@@ -1,6 +1,11 @@
 @file:OptIn(androidx.compose.ui.test.ExperimentalTestApi::class)
 package dev.gbalite.app
 
+import androidx.activity.compose.setContent
+import dev.gbalite.player.ui.GbaTheme
+import androidx.compose.foundation.layout.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
@@ -28,7 +33,7 @@ class Phase75UiTest {
     private fun waitFor(condition: ()->Boolean)=compose.waitUntil(15000,condition)
     private fun click(text: String) {compose.onNodeWithText(text,useUnmergedTree=true).performScrollTo().performClick()}
     private fun shot(name: String) {
-        compose.waitForIdle();Thread.sleep(250)
+        compose.waitForIdle();Thread.sleep(650)
         val output=File(i.targetContext.filesDir,"phase75-screenshots").apply {mkdirs()}
         val b=requireNotNull(i.uiAutomation.takeScreenshot())
         File(output,"$name.png").outputStream().use {b.compress(Bitmap.CompressFormat.PNG,100,it)};b.recycle()
@@ -92,4 +97,76 @@ class Phase75UiTest {
             menu();click("退出游戏");waitFor {!model().playing}
         } finally {compose.runOnUiThread {model().display(original)};runBlocking {model().session.stop()}}
     }
+    @Test fun roundBHomeLibraryDetailsAndRealImportStates() {
+        val m=model()
+        fun fixture(name: String): Uri {
+            val uri=Uri.parse("content://dev.gbalite.app.test.rom/$name")
+            i.context.grantUriPermission("dev.gbalite.app",uri,Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
+            return uri
+        }
+        // Presentation-only empty fixture: existing library/data remain intact.
+        compose.runOnUiThread {compose.activity.setContent {GbaTheme {AppShell(m,emptyList())}}}
+        compose.onNodeWithTag("nav-游戏库").performClick();shot("empty");compose.onNodeWithText("还没有游戏").assertExists()
+        compose.runOnUiThread {compose.activity.setContent {GbaTheme {AppShell(m)}}}
+        compose.runOnUiThread {m.add(fixture("phase6-slow.gba"))}
+        waitFor {m.loading};compose.onNodeWithTag("app-loading").assertExists();shot("loading");compose.onNodeWithText("取消").performClick();waitFor {!m.loading}
+        compose.runOnUiThread {m.add(fixture("phase6-multiple.zip"))}
+        waitFor {!m.loading && m.message=="ZIP 中包含多个 GBA 游戏"};compose.onNodeWithTag("app-error").assertExists();shot("error");compose.onNodeWithText("关闭").performClick()
+        compose.runOnUiThread {m.add(fixture("phase6-library.gba"))};waitFor {!m.loading && m.imported!=null}
+        val game=m.imported!!;compose.runOnUiThread {m.dismissMessage();m.play(game,false)}
+        waitFor {m.playing && !m.loading && m.session.playerMetrics().frames>5}
+        // This test keeps AppShell mounted to capture presentation; stop via the existing model.
+        compose.runOnUiThread {m.exit()};waitFor {!m.playing && m.library.any {it.record.gameId==game.gameId && it.lastPlayedAt.isNotEmpty()}}
+        shot("home");compose.onNodeWithTag("home-continue").assertExists()
+        compose.onNodeWithTag("nav-游戏库").performClick();shot("library")
+        compose.onNodeWithTag("library-search").performTextInput(game.displayName)
+        compose.onNodeWithText("详情").performClick();shot("details")
+        compose.onNodeWithTag("details-play").assertExists();compose.onNodeWithTag("nav-首页").assertDoesNotExist()
+        compose.onNodeWithContentDescription("返回").performClick()
+        compose.onNodeWithTag("nav-设置").performClick();compose.onNodeWithTag("settings-关于").performScrollTo().performClick();shot("about")
+        compose.onNodeWithText("GBA Lite 0.7.5").assertExists();compose.onNodeWithTag("nav-首页").assertDoesNotExist()
+        compose.onNodeWithContentDescription("返回").performClick();compose.onNodeWithTag("nav-首页").assertExists()
+    }
+
+    @Test fun flatControlsPaintAndTouchShareExpandedBounds() {
+        compose.runOnUiThread {
+            for(key in listOf("L","R","START","SELECT")) {
+                val down=mutableSetOf<GbaButton>()
+                val router=dev.gbalite.input.InputRouter {button,value->if(value) down+=button else down-=button}
+                val view=dev.gbalite.player.TouchControls(compose.activity,router)
+                view.layout(0,0,1000,1000)
+                view.profile=dev.gbalite.input.InputProfile(false,listOf(dev.gbalite.input.TouchControl(key,.5f,.5f,.1f)))
+                val radius=maxOf(50f,24*view.resources.displayMetrics.density)
+                val x=500+radius*1.10f
+                val bitmap=Bitmap.createBitmap(1000,1000,Bitmap.Config.ARGB_8888)
+                view.draw(android.graphics.Canvas(bitmap))
+                assertTrue("$key visible outside former circular bound",android.graphics.Color.alpha(bitmap.getPixel(x.toInt(),500))>0)
+                val event=android.view.MotionEvent.obtain(1,2,android.view.MotionEvent.ACTION_DOWN,x,500f,0)
+                view.onTouchEvent(event);event.recycle();assertEquals(setOf(GbaButton.valueOf(key)),down)
+                val cancel=android.view.MotionEvent.obtain(1,3,android.view.MotionEvent.ACTION_CANCEL,x,500f,0)
+                view.onTouchEvent(cancel);cancel.recycle();assertTrue(down.isEmpty());bitmap.recycle()
+            }
+        }
+    }
+
+    @Test fun smallViewportLargeTextKeepsNavigationAndLayoutSaveReachable() {
+        val m=model();val original=m.profiles.read(false)
+        compose.runOnUiThread {compose.activity.setContent {
+            val density=androidx.compose.ui.platform.LocalDensity.current
+            androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalDensity provides androidx.compose.ui.unit.Density(density.density,1.3f)) {
+                GbaTheme {Box(Modifier.width(320.dp).height(568.dp)) {AppShell(m)}}
+            }
+        }}
+        try {
+            compose.onNodeWithTag("nav-设置").performClick();shot("small-large-text-settings")
+            compose.onNodeWithTag("settings-控制").performScrollTo().performClick();click("竖屏布局")
+            click("整体");compose.onNodeWithText("整体大小：100%").assertExists()
+            compose.onNodeWithText("保存布局").performScrollTo().assertIsDisplayed();shot("small-large-text-layout")
+            click("保存布局");waitFor {m.message=="布局已保存"}
+            assertEquals(original,m.profiles.read(false))
+            compose.onNodeWithContentDescription("返回").performClick();compose.onNodeWithContentDescription("返回").performClick()
+            compose.onNodeWithTag("nav-首页").assertExists()
+        } finally {m.profiles.write(original)}
+    }
+
 }
