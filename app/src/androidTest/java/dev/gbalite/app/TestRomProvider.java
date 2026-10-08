@@ -23,6 +23,27 @@ public final class TestRomProvider extends ContentProvider {
         String asset = ("persistence.gba".equals(uri.getLastPathSegment()) || "renamed.gba".equals(uri.getLastPathSegment())) ? "persistence.gba" : "bringup.gba";
         if ("color-pattern.gba".equals(uri.getLastPathSegment()) || "lcd-pattern.gba".equals(uri.getLastPathSegment())) asset = uri.getLastPathSegment();
         String requested=uri.getLastPathSegment();
+        // Explicitly staged, audited homebrew only; no external path or arbitrary file URI.
+        if ("blob-goes-3d-v1.1.gba".equals(requested) || "hyperspace-roll-agb-v0.25.0.gba".equals(requested)) {
+            String expected = "blob-goes-3d-v1.1.gba".equals(requested)
+                ? "313cbb23444ef35497b4de23a459311f732c885d392f5e465ebe1861a26746f4"
+                : "de5a61698452d5f409970f1f5e042d0d4ace21ccc0ea7d2a770b8c311b8f3c57";
+            File staged = new File(getContext().getFilesDir(), "phase7-gameplay/" + requested);
+            try {
+                java.security.MessageDigest digest=java.security.MessageDigest.getInstance("SHA-256");
+                try (InputStream in=new java.io.FileInputStream(staged)) {
+                    byte[] buffer=new byte[16384];int n;
+                    while((n=in.read(buffer))!=-1) digest.update(buffer,0,n);
+                }
+                StringBuilder hex=new StringBuilder();
+                for(byte b:digest.digest()) hex.append(String.format(java.util.Locale.ROOT,"%02x",b & 255));
+                if(!hex.toString().equals(expected))
+                    throw new SecurityException("Staged homebrew hash mismatch");
+                return staged;
+            } catch (IOException | java.security.NoSuchAlgorithmException e) {
+                throw new IllegalStateException("Audited homebrew must be staged explicitly",e);
+            }
+        }
         if ("phase7-stress-a.gba".equals(requested) || "phase7-stress-b.gba".equals(requested) || "phase7-stress-c.gba".equals(requested) || "phase7-upgrade.gba".equals(requested) || "mgba-suite-shifter.gba".equals(requested)) asset=requested;
         if ("phase6-library.gba".equals(requested) || "phase6-other.gba".equals(requested) || "phase6-single.zip".equals(requested) || "phase6-multiple.zip".equals(requested) || "phase6-crud.gba".equals(requested) || "phase6-crud.zip".equals(requested)) asset=requested;
         if ("phase6-slow.gba".equals(requested) || "phase6-timeout.gba".equals(requested)) asset="phase6-slow.gba";
