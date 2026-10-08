@@ -8,13 +8,18 @@
 候选：0.7.0/code7，Debug `app/build/outputs/apk/debug/app-debug.apk`；
 unsigned Release `app/build/outputs/apk/release/app-release-unsigned.apk`。
 完整路径、SHA、构建输出时间及空权限列表见
-[candidate-apks.json](reports/evidence/phase7/7a-final-closeout/candidate-apks.json)。
-没有 production 签名；当前 Git 无 HEAD，commit 不能填写为一个真实提交。
+[final-candidate.json](reports/evidence/phase7/remaining-gaps/final-candidate.json)。
+没有 production 签名。当前代码提交 fbc3cb4134bd19f2d5371645049d6684aabea187；
+最新候选及审计见 reports/evidence/phase7/remaining-gaps/final-candidate.json。
+Debug沿用相同字节；Release重建增加Git提交元数据，其他ZIP条目内容未变。
+Debug SHA256: a0cc12c18cab69a6294cdf95fafd516899cb957a1090f9897463b304aef24051
+Release SHA256: a4e8a3594e7fba749b6eb9ba5fe676d0c0c302123da0b5536ec3779838ef4314
 历史7A双 clean 构建属于旧候选，不适用于这个新 SHA。
 
 使用自己的合法本地游戏；仅反馈类型、时长、现象与 PASS/FAIL/NOT_TESTED，
 无需提供 ROM、BIOS 或商业游戏截图。每一行初始状态均为 PENDING_USER。
-没有相应硬件或游戏时填 NOT_TESTED，不能留空后算作通过。
+执行后填 PASS / FAIL；没有相应硬件或游戏时填 NOT_AVAILABLE，并说明原因。
+尚未执行仍为 PENDING_USER，不能留空后算作通过。
 
 | 项目 | 操作与通过条件 | 必须实机 |
 |---|---|---|

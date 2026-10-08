@@ -30,8 +30,10 @@ Phase 7.5/8 are NOT STARTED; V1 Release is NOT READY.
 Latest: [7A final closeout](docs/reports/PHASE_7A_FINAL_CLOSEOUT_REPORT.md),
 [evidence index](docs/reports/evidence/phase7/INDEX.md),
 [manual checklist](docs/PHASE_7_FINAL_MANUAL_ACCEPTANCE_CHECKLIST.md).
-Remote repository is connected; actual CI execution is pending. API26/29, gameplay breadth and Phase2
-State coverage remain incomplete. Manual Acceptance PENDING_USER. Current API36
+Remote repository is connected; Remote CI PASS (run 37740246698). API26/29
+TEST-ONLY compatibility smoke completed with notes; API29 SAF black frame recovered
+after pause/continue and Home, with risk MONITORED. Complete gameplay breadth and
+Phase2 historical State remain incomplete. Manual Acceptance PENDING_USER. Current API36
 candidate minimal5/5 PASS73.303s; no repeated long-run or product changes in closeout.
 Phase 6 adds Home/Recent/Library, bounded single-GBA ZIP import, content-based duplicate/relink
 handling, metadata-only rename/removal, real play time, local artwork and shared offline settings.
@@ -82,3 +84,14 @@ Official source: https://github.com/mgba-emu/mgba and https://github.com/google/
 Architecture and implementation choices: docs/adr/. Evidence and remaining gates: docs/reports/.
 CI device tests use an explicitly configured self-hosted `android-arm64` runner. A green build-only CI
 does not establish device acceptance or permit the next phase automatically.
+
+Opt-in emulator compatibility only:
+
+```sh
+./gradlew :app:assembleCompat :app:assembleCompatAndroidTest -PapiCompatibility=true
+```
+
+This creates a TEST-ONLY / NOT FOR RELEASE APK with arm64-v8a and x86_64.
+Default product APKs remain arm64-v8a. See
+[API26/29 report](docs/reports/PHASE_7_API26_29_COMPATIBILITY_REPORT.md) and
+[remaining gaps](docs/reports/PHASE_7_REMAINING_GAPS_CLOSEOUT_REPORT.md).

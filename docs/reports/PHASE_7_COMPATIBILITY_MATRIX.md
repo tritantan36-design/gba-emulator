@@ -32,8 +32,8 @@ See the Phase 7A report for current open gates.
 
 | Target | Current coverage | Status |
 |---|---|---|
-|API26|ARM64 host boot unsupported; x86 boots but NO_MATCHING_ABIS|NOT_TESTED app|
-|API29|x86_64,x86 image rejects original arm64 APK|NOT_TESTED app|
+|API26|TEST-ONLY x86_64 boot/install, five areas across original4/5 + targeted1/1, real SAF and visible red frame, relaunch|PASS_WITH_NOTE; physical ARM not tested|
+|API29|TEST-ONLY x86_64 original4/5 + targeted1/1; real SAF import; black frame recovered after pause/continue and Home; relaunch|PASS_WITH_NOTE / display risk MONITORED|
 |API34|7A-0/main flow, current Lite regression, prior completed software long-run reused|PASS_WITH_NOTE|
 |API36|Current candidate targeted5/5 73.303s, installed SHA and cold relaunch verified; real SAF evidence reused from7A-0|PASS_WITH_NOTE|
 |Second physical OEM|Not available; original requirement conditional on availability|NOT_TESTED / justified limitation|
@@ -44,3 +44,8 @@ table remain NOT_TESTED; internal probes/elapsed stress are not those games.
 Actual Phase3–5 State reads and Phase6 upgrade reused PASS; Phase2 fixture NOT_TESTED.
 Renderer root cause status and remaining blockers:
 [final closeout](PHASE_7A_FINAL_CLOSEOUT_REPORT.md).
+
+Latest detailed coverage: [API26/29 execution](PHASE_7_API26_29_COMPATIBILITY_REPORT.md).
+Fresh release-specific [asset license review](PHASE_7_GAMEPLAY_LICENSE_REVIEW.md)
+identified mixed/restricted terms; no new game acquired or played. Full-game categories
+remain MISSING. Remote CI PASS (run 37740246698). Phase7 remains NOT READY.
