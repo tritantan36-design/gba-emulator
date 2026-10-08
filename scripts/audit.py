@@ -138,7 +138,14 @@ if phase6:
     for src,dst in [('LICENSE','APP-LICENSE.txt'),('NOTICE','NOTICE.txt'),('third_party/mgba/LICENSE','mGBA-LICENSE.txt'),('third_party/oboe/LICENSE','Oboe-LICENSE.txt')]:
         check((root/src).read_bytes()==(root/'app/src/main/assets/licenses'/dst).read_bytes(), dst+' packaged attribution matches source')
 if phase7:
-    check((root/'docs/reports/evidence/phase7/baseline.json').is_file(), 'Phase 6 baseline frozen before Phase 7 changes')
+    # Portable public export of the original capture; raw device/local evidence stays local.
+    baseline_path=root/'docs/baselines/phase6.json'
+    baseline=json.loads(baseline_path.read_text(encoding='utf-8')) if baseline_path.is_file() else {}
+    check(baseline.get('appVersion')=='0.6.0' and baseline.get('versionCode')==6
+          and baseline.get('sourcePhase')=='6 READY'
+          and baseline.get('rawStateVersion')==7
+          and len(baseline.get('originalCaptureSha256',''))==64,
+          'Phase 6 baseline frozen before Phase 7 changes (redacted original capture)')
     check((root/'docs/adr/ADR-017-phase7-hardening-validation.md').is_file(), 'Phase 7 decisions recorded')
     selected=json.loads((root/'test-rom/manifests/suite-selected.json').read_text(encoding='utf-8'))
     check(selected['revision']=='e6942030d25ffe3ba76c72b73a86da073ec857cc', 'selected mGBA suite revision pinned')

@@ -1,0 +1,130 @@
+{
+  "capturedAt": "2026-10-07T18:26:07.166698+08:00",
+  "sourcePhase": "6 READY",
+  "appVersion": "0.6.0",
+  "versionCode": 6,
+  "files": {
+    "PROJECT_SPEC.md": {
+      "size": 14407,
+      "sha256": "3020fc820f959b3204d48a7ae437327639d6499e1ac1a9749ac3370608ddaa2d"
+    },
+    "ARCHITECTURE.md": {
+      "size": 12724,
+      "sha256": "463d0b003caeb941413b09a0c78cfa74709999b46047d374965bd116dde77260"
+    },
+    "app/build.gradle.kts": {
+      "size": 2295,
+      "sha256": "ae9f93ff3137edca9a37ae698820fd2161f30994f37e0117a3f644d898d140a7"
+    },
+    "gradle/libs.versions.toml": {
+      "size": 1950,
+      "sha256": "8bcc1c23675380ad9e701ef3d2eb3cc5bffe597e8c4dcd6ae00a0c337413d9ea"
+    },
+    "gradle/wrapper/gradle-wrapper.properties": {
+      "size": 348,
+      "sha256": "1704344bf16161e782975537474c063572e4816ff5faba74bdfe2767d92a1b6e"
+    },
+    "third_party/SOURCE_LOCK.json": {
+      "size": 718,
+      "sha256": "c1eb9ef358b11f19aaa5cc75a8bb0b8457a32bc91d5907cd63db931061246fc8"
+    },
+    "test-rom/test-save-v1.sav": {
+      "size": 32768,
+      "sha256": "91fe8bc63da1c542130e95137a4e28eeb1ec7df6239ca92fbe08e050b3979c9f"
+    },
+    "data/schemas/dev.gbalite.data.SaveDatabase/1.json": {
+      "size": 4625,
+      "sha256": "c4c67d8bf7002bb7e2f11a30fcba4beb8f4d1bd3a875e1fe5632f3c9eb7493d2"
+    },
+    "data/schemas/dev.gbalite.data.SaveDatabase/2.json": {
+      "size": 5123,
+      "sha256": "8942954a6c3613dcdfcb5760037c3a913f41ab9edd4271ecd6a92dfd951f6946"
+    },
+    "data/schemas/dev.gbalite.data.SaveDatabase/3.json": {
+      "size": 6329,
+      "sha256": "c5c08d55fff33d07c7b2e279cfd62b455f3610a51c466d74c2e8000686d5942f"
+    },
+    "app/gradle.lockfile": {
+      "size": 74103,
+      "sha256": "68a6a2d2b0aaec9336ab32487a32ffa02ab9ec8d8caffe50d32052c26b059b99"
+    },
+    "audio/gradle.lockfile": {
+      "size": 45414,
+      "sha256": "423f751445ab248175491531b33872130f8e3f50cc59f167347be5c267e2a6bd"
+    },
+    "core-api/gradle.lockfile": {
+      "size": 4861,
+      "sha256": "5d417d7b577626d921c676af2a02522fe599f0bceaa47a98c5fa2d679fb5349d"
+    },
+    "core-mgba/gradle.lockfile": {
+      "size": 45414,
+      "sha256": "423f751445ab248175491531b33872130f8e3f50cc59f167347be5c267e2a6bd"
+    },
+    "data/gradle.lockfile": {
+      "size": 53747,
+      "sha256": "2c35ed9880c233bd23601bc1f4c9bfdffdfaa082cbd55441ec0d2d9ba3b86127"
+    },
+    "emulator-session/gradle.lockfile": {
+      "size": 5599,
+      "sha256": "11b17f29de359b341114c27800eb3e9f1ee9e619a7c7fdd733d3de16cd2f1771"
+    },
+    "feature-player/gradle.lockfile": {
+      "size": 70088,
+      "sha256": "218e65498eaa8a6a365827a7ff2594d6af99159f68b41009c60ec9db93d94060"
+    },
+    "input/gradle.lockfile": {
+      "size": 4861,
+      "sha256": "5d417d7b577626d921c676af2a02522fe599f0bceaa47a98c5fa2d679fb5349d"
+    },
+    "renderer/gradle.lockfile": {
+      "size": 45414,
+      "sha256": "423f751445ab248175491531b33872130f8e3f50cc59f167347be5c267e2a6bd"
+    },
+    "storage/gradle.lockfile": {
+      "size": 5249,
+      "sha256": "bfdb3a63bfc47698626e5b2e050af9df71919ed6f3f6ed9e6338527c7b6c97a1"
+    },
+    "gradle/verification-metadata.xml": {
+      "size": 258516,
+      "sha256": "91cf317b975975a8a1cb9d96c590b1c9583a477c8fa72d05417f7bcc11550cac"
+    },
+    "settings-gradle.lockfile": {
+      "size": 202,
+      "sha256": "6656e3aed66762d2f39666de089080c66a3224078aabdf27764b041da508df84"
+    },
+    "artifacts/gba-emulator/phase6/delivery-final/gba-lite-phase6-activity-test.apk": {
+      "size": 1199535,
+      "sha256": "81ec41af2264a0f490a1ea2abcef6723e214581fa7b67906c0996c370b11678e"
+    },
+    "artifacts/gba-emulator/phase6/delivery-final/gba-lite-phase6-debug.apk": {
+      "size": 19787044,
+      "sha256": "74b0a2dd5c2e9fb69ccd5ac21b0f8750e0c3ff6dbcb319a06def099d3f7bbf4f"
+    },
+    "artifacts/gba-emulator/phase6/delivery-final/gba-lite-phase6-jni-test.apk": {
+      "size": 7332267,
+      "sha256": "e1fe7c279a401bb281d7730f1eb9a763956cab620c033f5318ad08b0725563ac"
+    },
+    "artifacts/gba-emulator/phase6/delivery-final/gba-lite-phase6-release-unsigned.apk": {
+      "size": 16324367,
+      "sha256": "008e59e5fc13eea18faaf6799b37a6f8e41a02c3c551f890f2e73085eab0bb27"
+    }
+  },
+  "tools": {
+    "AGP": "8.13.0",
+    "Gradle": "8.14.3",
+    "Kotlin": "2.2.20",
+    "ComposeBOM": "2025.09.01",
+    "NDK": "27.2.12479018",
+    "CMake": "3.22.1",
+    "JDK": "21.0.12.1+1"
+  },
+  "debugCertificateSha256": "3660dfb189306e49d973a7f91c9cbc1cb35cc93921f0292e8db28b3fa10b4094",
+  "releaseSigned": false,
+  "roomSchema": 3,
+  "stateJsonSchema": 1,
+  "rawStateVersion": 7,
+  "displayEncoding": 2,
+  "peripheralEncoding": 1,
+  "note": "Redacted export of original 2026-10-07 Phase6 capture, not a new baseline or historical State fixture. Local Git/disk-path details removed; retained original capture SHA256 and recorded file hashes. Certificate is historical Debug only.",
+  "originalCaptureSha256": "55a934515439230eb4ba86c0d9bb63369bd78d98a671147674ff450762ccf75b"
+}

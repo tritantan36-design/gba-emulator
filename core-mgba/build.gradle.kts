@@ -20,6 +20,17 @@ android {
     buildTypes {
         debug { externalNativeBuild { cmake { arguments += "-DGBA_UBSAN=${if(providers.gradleProperty("gbaUbsan").orNull=="true") "ON" else "OFF"}" } } }
         release { isMinifyEnabled = false }
+        if (providers.gradleProperty("apiCompatibility").orNull == "true") {
+            create("compat") {
+                initWith(getByName("debug"))
+                matchingFallbacks += "debug"
+                ndk { abiFilters.clear(); abiFilters += "x86_64" }
+                externalNativeBuild { cmake { arguments += "-DCMAKE_BUILD_TYPE=Debug" } }
+            }
+        }
+    }
+    if (providers.gradleProperty("apiCompatibility").orNull == "true") {
+        sourceSets.getByName("compat").java.srcDir("src/debug/java")
     }
 
     ndkVersion = "27.2.12479018"

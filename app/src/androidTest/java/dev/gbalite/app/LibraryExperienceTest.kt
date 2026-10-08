@@ -123,7 +123,9 @@ class LibraryExperienceTest {
         compose.onNodeWithText("关于").performClick();compose.onNodeWithText("开源许可 · mGBA").performScrollTo().performClick();compose.onNodeWithText("Mozilla Public License",substring=true).assertExists();back();back();back()
         compose.onNodeWithText("游戏库",useUnmergedTree=true).performClick()
         compose.onNodeWithTag("library-search").performTextClearance();compose.onNodeWithTag("library-search").performTextInput("Phase 6 Test")
-        compose.onNodeWithText("详情").performClick();compose.onNodeWithText("移出游戏库").performScrollTo().performClick();compose.onNodeWithText("确认移出").performClick()
+        compose.onNodeWithText("详情").performClick()
+        compose.onNode(hasScrollToNodeAction()).performScrollToNode(hasText("移出游戏库"))
+        compose.onNodeWithText("移出游戏库").performClick();compose.onNodeWithText("确认移出").performClick()
         compose.waitUntil(5000) {model().library.none {it.record.gameId==id}}
     }
     @Test fun zipUiDuplicateAndInvalidZipLeaveLibraryIntact() {

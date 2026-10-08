@@ -47,6 +47,16 @@ import java.io.File
     private fun waitFile(key: String) {
         compose.waitUntil(10000) { File(persistence(),"$key/current.json").exists() }
     }
+    private fun stateOperation(label: String,key: String?=null) {
+        val manifest=key?.let {File(persistence(),"$it/current.json")}
+        val before=manifest?.takeIf {it.exists()}?.readText()
+        compose.onNodeWithText(label,useUnmergedTree=true).performScrollTo()
+        val button=hasClickAction() and hasAnyDescendant(hasText(label)) and isEnabled()
+        compose.waitUntil(10000) {compose.onAllNodes(button,useUnmergedTree=true).fetchSemanticsNodes().size==1}
+        compose.onNode(button,useUnmergedTree=true).performClick()
+        if(manifest!=null) compose.waitUntil(10000) {manifest.exists() && manifest.readText()!=before}
+        compose.waitUntil(10000) {compose.onAllNodes(button,useUnmergedTree=true).fetchSemanticsNodes().size==1}
+    }
     @Test fun batteryBackgroundRecreateManualSlotsQuickAndResume() {
         open(); Thread.sleep(200)
         compose.onNodeWithTag("touch-controls").performTouchInput { down(androidx.compose.ui.geometry.Offset(width*.83f,height*.35f)) }; Thread.sleep(100)
@@ -54,11 +64,11 @@ import java.io.File
         compose.onNodeWithText("菜单").performClick()
         compose.waitUntil(5000) { compose.onAllNodesWithText("暂停").fetchSemanticsNodes().isNotEmpty() }
         for(slot in 1..4) {
-            compose.onNodeWithText("保存 $slot",useUnmergedTree=true).performScrollTo().performClick(); waitFile("slot-$slot")
-            compose.waitForIdle(); compose.onNodeWithText("读取 $slot",useUnmergedTree=true).performScrollTo().performClick(); Thread.sleep(100)
+            stateOperation("保存 $slot","slot-$slot")
+            stateOperation("读取 $slot")
         }
-        compose.onNodeWithText("Quick Save",useUnmergedTree=true).performScrollTo().performClick(); waitFile("quick")
-        compose.onNodeWithText("Quick Load",useUnmergedTree=true).performScrollTo().performClick(); Thread.sleep(100)
+        stateOperation("Quick Save","quick")
+        stateOperation("Quick Load")
         compose.onNodeWithText("继续").performClick()
         compose.activityRule.scenario.moveToState(Lifecycle.State.CREATED)
         waitFile("battery"); waitFile("auto-a")
