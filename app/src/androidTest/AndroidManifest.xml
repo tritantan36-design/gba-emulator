@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <!-- TEST ONLY provider; this manifest is never packaged in the production APK. -->
+        <provider android:name="dev.gbalite.app.TestRomProvider"
+            android:authorities="dev.gbalite.app.test.rom" android:exported="true" android:grantUriPermissions="true" />
+    </application>
+</manifest>

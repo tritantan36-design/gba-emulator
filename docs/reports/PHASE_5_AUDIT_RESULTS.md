@@ -1,0 +1,68 @@
+# Phase 5 audit
+
+- PASS: debug merged manifest exists
+- PASS: debug merged permissions = []
+- PASS: debug launcher Activity exists
+- PASS: release merged manifest exists
+- PASS: release merged permissions = []
+- PASS: release launcher Activity exists
+- PASS: release dependency list generated
+- PASS: no network/Analytics/Ads runtime SDKs
+- PASS: runtime dependency versions pinned
+- PASS: mgba upstream LICENSE retained
+- PASS: mgba content hash manifest exists
+- PASS: mgba vendor file list matches official archive
+- PASS: mgba upstream source unchanged
+- PASS: oboe upstream LICENSE retained
+- PASS: oboe content hash manifest exists
+- PASS: oboe vendor file list matches official archive
+- PASS: oboe upstream source unchanged
+- PASS: feature-player has no concrete-core/JNI dependency
+- PASS: renderer has no concrete-core/JNI dependency
+- PASS: input has no concrete-core/JNI dependency
+- PASS: emulator-session has no concrete-core/JNI dependency
+- PASS: core-api has no concrete-core/JNI dependency
+- PASS: storage has no concrete-core/JNI dependency
+- PASS: data has no concrete-core/JNI dependency
+- PASS: own-code Apache-2.0 LICENSE
+- PASS: mGBA attribution in NOTICE
+- PASS: Gradle dependency lockfiles generated
+- PASS: Debug APK exists
+- PASS: APK is arm64-v8a only
+- PASS: APK includes source-built bridge
+- PASS: Debug/Release DataStore native matches pinned official 1.1.7 AAR bytes
+- PASS: APK native library provenance allowlist: ['lib/arm64-v8a/libandroidx.graphics.path.so', 'lib/arm64-v8a/libdatastore_shared_counter.so', 'lib/arm64-v8a/libgba_bridge.so']
+- PASS: test ROM not bundled in app
+- PASS: storage dependency lock exists
+- PASS: data dependency lock exists
+- PASS: Room schema 1 retained
+- PASS: Room schema 2 exported
+- PASS: no destructive Room migration
+- PASS: fixed legal v1 battery regression asset retained
+- PASS: storage fails closed without atomic replace
+- PASS: player ownership decisions recorded before implementation
+- PASS: bounded memory-only rewind ring exists
+- PASS: fixed v1 sav unchanged
+- PASS: PROJECT_SPEC.md unchanged from provided specification
+- PASS: ARCHITECTURE.md unchanged from provided specification
+- PASS: renderer decisions recorded before implementation
+- PASS: only four built-in shader modes
+- PASS: reusable upload buffers; no per-frame Bitmap
+- PASS: single pass without FBO chain
+- PASS: shader failure fallback exists
+- PASS: official pinned DataStore prescribed by highest specification
+- PASS: color-pattern gba pinned hash
+- PASS: color-pattern rgba pinned hash
+- PASS: lcd-pattern gba pinned hash
+- PASS: lcd-pattern rgba pinned hash
+- PASS: peripheral ownership ADR recorded
+- PASS: user zero-permission choice retained; no real rumble claim
+- PASS: pinned peripheral APIs documented
+- PASS: original peripheral probe source hash
+- PASS: rtc-probe pinned test APK ROM hashes
+- PASS: rotation-probe pinned test APK ROM hashes
+- PASS: tilt-probe pinned test APK ROM hashes
+- PASS: solar-probe pinned test APK ROM hashes
+- PASS: rumble-probe pinned test APK ROM hashes
+- PASS: bounded sensor sampling and listener cleanup
+- PASS: sensor adapter owns no native handle

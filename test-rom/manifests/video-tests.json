@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "license": "Apache-2.0",
+  "source": "test-rom/visual-patterns.py",
+  "sourceType": "project-authored",
+  "bios": "mGBA HLE, no Nintendo BIOS/logo",
+  "build": "test-rom/build.ps1, frozen official NDK 27.2.12479018",
+  "tests": [
+    {
+      "id": "color-pattern", "tier": "A", "ci": true,
+      "romSha256": "d8b4eec937ee957eeb1d0bc8ee5aeabb3dd2c2333f883da93acf20a9c85be0c7",
+      "frame": 300, "format": "240x160 RGBA8888, alpha=255",
+      "rawSha256": "64e7eb4bb8440fd5f2db4a0af9f21b79d85576491cc7e57a4946be6e6da727b4"
+    },
+    {
+      "id": "lcd-pattern", "tier": "A", "ci": true,
+      "romSha256": "dbc6f691e1db31d9ab38853c5feb7a789a9c960efeec1b4a3585a3c4b7e9625e",
+      "frame": 300, "format": "240x160 RGBA8888, alpha=255",
+      "rawSha256": "01727ebb9f0b5d3f9bb787956107a8f4013f712a234ebaa93c080e93586aef76"
+    }
+  ]
+}

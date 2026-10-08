@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <!-- TEST APK ONLY: prevents OEM cached-process freezing during JNI regression. -->
+        <activity android:name="dev.gbalite.mgba.JniHarnessActivity" android:exported="false"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" />
+    </application>
+</manifest>

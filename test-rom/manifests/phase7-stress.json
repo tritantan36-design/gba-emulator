@@ -1,0 +1,17 @@
+{
+  "phase7-stress-a.gba": {
+    "sha256": "ecdf3656d26a5cfbd503298bd3302c191a81c16c7d652bef528084c9d580bf1a",
+    "license": "Apache-2.0",
+    "source": "test-rom/persistence.s + isolated identity suffix"
+  },
+  "phase7-stress-b.gba": {
+    "sha256": "8d6e6fe14e94d968fd7a0f25821320fff10883f67659043ecb393830c7fe31fa",
+    "license": "Apache-2.0",
+    "source": "test-rom/persistence.s + isolated identity suffix"
+  },
+  "phase7-stress-c.gba": {
+    "sha256": "610ba01643533e28c8029fdd9e6e3d674d53a79eb0e6a2530e8762bb2d9901a6",
+    "license": "Apache-2.0",
+    "source": "test-rom/persistence.s + isolated identity suffix"
+  }
+}

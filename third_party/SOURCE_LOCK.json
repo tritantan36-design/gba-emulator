@@ -1,0 +1,22 @@
+[
+  {
+    "name": "mgba",
+    "tag": "0.10.5",
+    "commit": "26b7884bc25a5933960f3cdcd98bac1ae14d42e2",
+    "upstream": "https://github.com/mgba-emu/mgba",
+    "archive_sha256": "45dda6406a2525ceff0096b67db1b0c74e74555fab722dfdb33001f65020dc6e",
+    "modified": false,
+    "excluded_paths": [
+      "cinema/"
+    ],
+    "modification_scope": "No upstream code modifications; unused regression assets excluded, ADR-007."
+  },
+  {
+    "name": "oboe",
+    "tag": "1.9.3",
+    "commit": "b15f5e39c01a7ada306d959e5129620b145fb8b4",
+    "upstream": "https://github.com/google/oboe",
+    "archive_sha256": "8c9ef2dee084e1c7dac939a664851fb4279cd25ebd0a5496a83e4fb162777b66",
+    "modified": false
+  }
+]

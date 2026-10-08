@@ -1,0 +1,12 @@
+GBA Lite — Copyright 2026 GBA Lite contributors.
+Project-authored code is licensed under Apache-2.0.
+This project uses mGBA as its Game Boy Advance emulation core.
+mGBA is licensed under MPL-2.0. See third_party/mgba/LICENSE and source headers.
+Oboe is licensed under Apache-2.0. See third_party/oboe/LICENSE.
+Bundled third-party mGBA code retains its individual upstream copyright/license notices.
+This project is independent and is not endorsed or supported by the mGBA project.
+No commercial ROMs or Nintendo BIOS are distributed.
+Display preferences use AndroidX DataStore 1.1.7, Apache-2.0.
+GBA Color independently implements the public-domain gba-color formula by
+Pokefan531/hunterk, libretro/glsl-shaders revision 77697c58448380156a87b251e6461d5ab00071f3.
+See docs/adr/ADR-012-renderer-visual-experience.md for coefficients and assumptions.

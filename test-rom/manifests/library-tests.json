@@ -1,0 +1,35 @@
+{
+  "license": "Apache-2.0",
+  "source": "test-rom/bringup.s",
+  "originalSha256": "219485756a043e5e2e51fe0ae9890e0462859dad9479ce4208a2c98284d15ced",
+  "fixtures": {
+    "phase6-library.gba": {
+      "sha256": "c21b193e38d71570b644804b1ec307f01915e3943b868acd99d45bafb19401e3",
+      "size": 356
+    },
+    "phase6-other.gba": {
+      "sha256": "8d71c5040a7a3bb09ca77a7b68530593a8b579f73d5af4a37b41aaabc8f042ff",
+      "size": 362
+    },
+    "phase6-crud.gba": {
+      "sha256": "4b12c19865e0b765bb5ef5eaba8ac66634aae9c1aa6dd396309778fa248c5a8d",
+      "size": 364
+    },
+    "phase6-slow.gba": {
+      "sha256": "ed56144817fcb4cddc17a8cfd27f7b2607599ad56d0eba86042e7f0d08e20d52",
+      "size": 262144
+    },
+    "phase6-crud.zip": {
+      "sha256": "598919a940e9a97f34259dcd955f923c760d097ff77fd281a5b47e91e4b78b42",
+      "size": 329
+    },
+    "phase6-single.zip": {
+      "sha256": "9ad7ff5d8413f139f835cbee204f23a365cf1d466086a6a43fea18bd64a94ad7",
+      "size": 461
+    },
+    "phase6-multiple.zip": {
+      "sha256": "629af27763721ce6f3c0555a0194446a8fd83ec51bfe30f1d086e4da8af7ca1b",
+      "size": 578
+    }
+  }
+}

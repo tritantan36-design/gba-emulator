@@ -1,0 +1,32 @@
+.gradle/
+**/build/
+**/.cxx/
+local.properties
+*.zip
+!app/src/androidTest/assets/phase6-*.zip
+*.jks
+*.keystore
+.idea/
+__pycache__/
+/build-*.log
+/device-*.log
+/native-*.log
+/phase2-*.log
+/phase3-*.log
+/phase4-*.log
+/phase4-watchdog.txt
+/phase6-*.log
+
+# Local QA captures can contain device/user data and large APK/state artifacts.
+# Preserve them on disk; publish CI-generated artifacts through Actions instead.
+/docs/reports/evidence/
+/phase5-*.log
+/phase5-*.txt
+*.apk
+*.aab
+*.hprof
+*.dmp
+*.pem
+*.key
+.env
+.env.*

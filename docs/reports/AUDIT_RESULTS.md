@@ -1,0 +1,32 @@
+# Phase 0/1 audit
+
+- PASS: debug merged manifest exists
+- PASS: debug merged permissions = []
+- PASS: debug launcher Activity exists
+- PASS: release merged manifest exists
+- PASS: release merged permissions = []
+- PASS: release launcher Activity exists
+- PASS: release dependency list generated
+- PASS: no network/Analytics/Ads runtime SDKs
+- PASS: runtime dependency versions pinned
+- PASS: mgba upstream LICENSE retained
+- PASS: mgba content hash manifest exists
+- PASS: mgba vendor file list matches official archive
+- PASS: mgba upstream source unchanged
+- PASS: oboe upstream LICENSE retained
+- PASS: oboe content hash manifest exists
+- PASS: oboe vendor file list matches official archive
+- PASS: oboe upstream source unchanged
+- PASS: feature-player has no concrete-core/JNI dependency
+- PASS: renderer has no concrete-core/JNI dependency
+- PASS: input has no concrete-core/JNI dependency
+- PASS: emulator-session has no concrete-core/JNI dependency
+- PASS: core-api has no concrete-core/JNI dependency
+- PASS: own-code Apache-2.0 LICENSE
+- PASS: mGBA attribution in NOTICE
+- PASS: Gradle dependency lockfiles generated
+- PASS: Debug APK exists
+- PASS: APK is arm64-v8a only
+- PASS: APK includes source-built bridge
+- PASS: APK native library provenance allowlist: ['lib/arm64-v8a/libandroidx.graphics.path.so', 'lib/arm64-v8a/libgba_bridge.so']
+- PASS: test ROM not bundled in app

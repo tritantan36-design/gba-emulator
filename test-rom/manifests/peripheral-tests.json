@@ -1,0 +1,38 @@
+{
+  "license": "Apache-2.0",
+  "source": "test-rom/peripheral-probe.c",
+  "mapperNote": "Header IDs select pinned mGBA mapper only; all executable code/assets are original. rotation has gyro detected and manually enabled tilt, tilt-probe detects tilt.",
+  "roms": {
+    "rtc-probe": {
+      "sha256": "0263d615bf12e0ee33f2fb2c11aabe33e080ca2861162d240a340176aac3ebd6",
+      "headerMapper": "U3IE",
+      "probeMode": 0,
+      "size": 812
+    },
+    "rotation-probe": {
+      "sha256": "12c39ca4afaa08bc7f8505c38da15821d6d67805b7d4f631828b5930198d5abd",
+      "headerMapper": "RZWE",
+      "probeMode": 1,
+      "size": 856
+    },
+    "tilt-probe": {
+      "sha256": "f2941332a7d411c54fdbf00fc6d70516c5c046e64046a215a7d6281c0044a16a",
+      "headerMapper": "KHPJ",
+      "probeMode": 1,
+      "size": 856
+    },
+    "solar-probe": {
+      "sha256": "63d6eebc976a0925a0d19ba6e2189671726d033fea17b0187e4f9b349245f049",
+      "headerMapper": "U3IE",
+      "probeMode": 2,
+      "size": 724
+    },
+    "rumble-probe": {
+      "sha256": "a8069c1ee1ef0ca44c2f56000ef680d4e4b10b21ce738182c9ad353dd37522a6",
+      "headerMapper": "V49E",
+      "probeMode": 3,
+      "size": 688
+    }
+  },
+  "sourceSha256": "95d4f6bf751669ea966a508f93e3087e213c1dec786c00cf614489723b72e541"
+}

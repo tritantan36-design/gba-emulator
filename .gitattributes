@@ -1,0 +1,2 @@
+# Keep audited source/fixture bytes identical on Windows and CI.
+* -text

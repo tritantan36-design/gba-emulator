@@ -1,0 +1,16 @@
+{
+  "id": "mgba-suite-shifter",
+  "source": "https://github.com/mgba-emu/suite",
+  "revision": "e6942030d25ffe3ba76c72b73a86da073ec857cc",
+  "tier": "A",
+  "license": "MIT",
+  "archiveSha256": "4a82b13a84c5a5c904bdb73c1dab4d3a3c78b45e9fa2000e10553ac1ce19a585",
+  "romSha256": "3c785fdd366039f5f3c5291a37d22d92d66639af1be1d16976bb10da2e22d2ab",
+  "sourceSha256": {
+    "LICENSE": "2ee28a3f7b56a9b743bd5b7ca9ac0a337da4e1cce95ab917ecfae8944135f6fb",
+    "src/shifter.c": "58992ff80c2a694273d718b94e353e857bba56fbd808c5f908ace04a188a69e1",
+    "src/shifter-impl.s": "ffe4a5b9bb0e6bfdb6322af7f4be12a8c9b1575f0bd845a02263e8ded42aace0",
+    "include/macros.s": "9144919b855e6a8a005c54d92ba7f7bbfe022f6278cc3568276b6ad201a26749"
+  },
+  "scope": "Shifter instruction functions and original expected cases only. No libgba, timing suite or full suite. Original wrapper. GNU function metadata removed for Clang; instructions unchanged."
+}

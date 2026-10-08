@@ -1,0 +1,10 @@
+{
+  "source": "test-rom/persistence.s",
+  "baseAssetSha256": "87addcdfb37cd92f807e885e16e449b1d3898973e13686ad6d3200f2b14a94f7",
+  "suffix": "PHASE7_ACTUAL_6_TO_7_UPGRADE_ONLY",
+  "license": "Apache-2.0",
+  "tier": "A",
+  "size": 434,
+  "sha256": "11054b3c65ee4206e950fa09fe1d82e847fed55817e4cc661b5376b5db9df1e6",
+  "purpose": "Isolated actual Phase 6 to 7 package/data upgrade. Never a production asset."
+}
