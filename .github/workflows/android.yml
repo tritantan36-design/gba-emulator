@@ -60,7 +60,7 @@ jobs:
           cmake --build core-mgba/build/host-tests --parallel 4
           ctest --test-dir core-mgba/build/host-tests --output-on-failure
       - name: Permission, dependency, license and source audit
-        run: python3 scripts/audit.py --phase7a
+        run: python3 scripts/audit.py --phase7a --output app/build/reports/phase7-source-audit.md
       - name: Export ordinary QA results and unsigned candidates
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -77,7 +77,8 @@ jobs:
             app/build/reports/runtime-dependencies.txt
             audio/build/native-tests/Testing/Temporary/LastTest.log
             core-mgba/build/host-tests/Testing/Temporary/LastTest.log
-            docs/reports/PHASE_7A_APK_PROVENANCE_AUDIT.md
+            app/build/reports/phase7-source-audit.md
+            build/reports/dependency-verification/**
   device:
     if: github.event_name == 'workflow_dispatch' && inputs.device_tests
     runs-on: [self-hosted, android-arm64]
