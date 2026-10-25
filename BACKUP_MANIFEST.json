@@ -1,0 +1,249 @@
+{
+  "date": "2026-10-25",
+  "repository": "tritantan36-design/gba-emulator",
+  "branch": "archive/history-retirement-20261025",
+  "files": [
+    {
+      "path": "scripts/phase8_release.py",
+      "sizeBytes": 2533,
+      "sha256": "a329607a0fba8bd86b71cb70dc97897f8137078056b142bf4d88a9c8f4eccf6c",
+      "gitBlobSha": "4e410518b28988402d447a84a49b9f6ec1423168"
+    },
+    {
+      "path": "scripts/phase8_release_smoke.py",
+      "sizeBytes": 1445,
+      "sha256": "0be8c926dbedc8937278c59d33037d1fc361b9dd65d4eba671afdeb65d4f2b51",
+      "gitBlobSha": "2fd5447faf78fb425f09920e4c305eddf831ab61"
+    },
+    {
+      "path": "scripts/v1_0_1_layout_validation.py",
+      "sizeBytes": 3332,
+      "sha256": "b39c741b95a1e95eae984468a695fee4d6c77c09c7f42611eef3caae20ceae76",
+      "gitBlobSha": "bc89b7598fd47f3d78d9e9fe152f095785b9d433"
+    },
+    {
+      "path": "scripts/v1_0_1_release.py",
+      "sizeBytes": 4758,
+      "sha256": "1bc4f98f45fe688617eedbe0f22f5f714d4ee1f0b30e33610a43747ae6730f79",
+      "gitBlobSha": "88c7b168c06c915582cf1ca68c5adb13dc788ef2"
+    },
+    {
+      "path": "scripts/v1_0_1_release_smoke.py",
+      "sizeBytes": 3774,
+      "sha256": "92120c14bdf520a2c50f58d5a8eb87532007b6f74727c0d170f4503c14b38ce7",
+      "gitBlobSha": "1c5d38451b5f53e6678020c8ac83db00549ea309"
+    },
+    {
+      "path": "scripts/v1_1_release.py",
+      "sizeBytes": 13719,
+      "sha256": "96f1be3c9c476f0974f716660397b53653f6e23a598e6dc3b2138c6aa72cceb0",
+      "gitBlobSha": "a3ee5c5fc4c3f8c6692b428cd7333c9ff02c1871"
+    },
+    {
+      "path": "scripts/v1_1_release_archive.py",
+      "sizeBytes": 4444,
+      "sha256": "4a7ea5bae3ba2ce1a91089d1f14f0b5dcf15b9198b4d1105632663226e052b52",
+      "gitBlobSha": "5e15d4acc68fbfa63ecefa5bcdbed1e4ed15666b"
+    },
+    {
+      "path": "scripts/v1_1_release_validation.py",
+      "sizeBytes": 9917,
+      "sha256": "bccbf5c25201cd1da2436eef683e511aff38765f553476df1205549c40898e21",
+      "gitBlobSha": "8ab3cfb538f185696fe394c542e584291fb7f1d5"
+    },
+    {
+      "path": "scripts/v1_1_preview_package_audit.py",
+      "sizeBytes": 1922,
+      "sha256": "331b0dfcd5ab33ad6779d441b32b21709c7e037a3edf67e2e7dc7725660a4a3b",
+      "gitBlobSha": "d9aa89b2f4ffddb9aa850e165c35fdc420fc75cd"
+    },
+    {
+      "path": "scripts/v1_1_preview_validation.py",
+      "sizeBytes": 4215,
+      "sha256": "7ecb175b9d139d72aff365d07c13b8d03afde53933d6825dad91645584069418",
+      "gitBlobSha": "c913431232cb8ef1ef6de4c13c811c6c31c06633"
+    },
+    {
+      "path": "scripts/v1_1_stage_evidence.py",
+      "sizeBytes": 3063,
+      "sha256": "492ad092ad09037d192924baa7bc16821489ba683629f38e967e0d53d7e8e4fc",
+      "gitBlobSha": "a71b0a23dcaac810b60b5e8f28c8e94325da996b"
+    },
+    {
+      "path": "scripts/v1_1_ui_polish_evidence.py",
+      "sizeBytes": 3667,
+      "sha256": "16502d8bbea38db6d0a98c26da8d5013028d26b6ace17c4c0bd0c62446a7bdb1",
+      "gitBlobSha": "7796418aba5692770e26a53251665c25e34d0733"
+    },
+    {
+      "path": "scripts/v1_1_ui_polish_validation.py",
+      "sizeBytes": 4699,
+      "sha256": "3d940d2ab2429971616a66520164d37cf2eea432afd891001abc03425ab3408e",
+      "gitBlobSha": "7c42e773a7b933cbd93162716aabc42e3f431e39"
+    },
+    {
+      "path": "scripts/source_inventory.py",
+      "sizeBytes": 1171,
+      "sha256": "a5f1704cbf1651ada3fcdaca69c0d5a3e9d31400a915887873e61d72325f6d76",
+      "gitBlobSha": "206c00d94e987d8bb6b6afa60730e3bc4404900c"
+    },
+    {
+      "path": "docs/reports/evidence/daily-experience/baseline-jni-aligned.apk",
+      "sizeBytes": 10518188,
+      "sha256": "d191603a2b462b68ad63723bea62830b636d1bf7e97bce5b4913ff68f4494b9f",
+      "gitBlobSha": "4b7b8cf5298ef63464c607952ad2b9298023aa58"
+    },
+    {
+      "path": "docs/reports/evidence/daily-experience/baseline-jni-test.apk",
+      "sizeBytes": 10529389,
+      "sha256": "c5dc818e56085bef10c6f85a1873a799ab5156065bd75d76f1204e530987fcfc",
+      "gitBlobSha": "8933eb17434b1b1a7c931eda80f5597013b46693"
+    },
+    {
+      "path": "docs/reports/evidence/daily-experience/baseline-jni-test.apk.idsig",
+      "sizeBytes": 91523,
+      "sha256": "92f2bf185fec08f0668d577f0e3c9b3aae3e5bbc952f9e6ef27a50a195935760",
+      "gitBlobSha": "ed38a014b789abb6676c6dd6036f43f7494c663c"
+    },
+    {
+      "path": "docs/reports/evidence/daily-experience/baseline-jni-unsigned.apk",
+      "sizeBytes": 10511664,
+      "sha256": "ed3687933bb3759bf882b38d923f0273c06d035e1b4252c3c83ee9625fb578e0",
+      "gitBlobSha": "92d476318ffe21b56ed2ee0debbe80a0b537f4b1"
+    },
+    {
+      "path": "docs/reports/evidence/v1_0_1_release/GBA-Lite-1.0.1-code15-unsigned.apk",
+      "sizeBytes": 16451163,
+      "sha256": "2bcd938ad847c7e1d5383dcc01c21d065463e099cf250235a1d62a7b17c5eb69",
+      "gitBlobSha": "b0f949727c4f38b5eaf22980c4132e2ee468cdd3"
+    },
+    {
+      "path": "docs/reports/evidence/v1_0_1_release/GBA-Lite-1.0.1-source-before-readme.zip",
+      "sizeBytes": 18279551,
+      "sha256": "644e60b3d8b1e0ad52ec5bb377812393004793d8fec42c932ac3d37e4fb35785",
+      "gitBlobSha": "cd25695278ff90788fbebde5c7553ff78d792783"
+    },
+    {
+      "path": "docs/reports/evidence/v1_0_1_release/GBA-Lite-1.0.1-source.zip",
+      "sizeBytes": 18279563,
+      "sha256": "daf94f544425329a8f9effadda622d4d10d11d7582037df269fd65bd5040c786",
+      "gitBlobSha": "f68ec719da2789355ca6c62e0cd13fc2be046364"
+    },
+    {
+      "path": "docs/reports/evidence/v1_1_release/baseline/jni-tests.apk",
+      "sizeBytes": 4655200,
+      "sha256": "ea9955d2df59206aaa19e78cec2e509194c371e174d5fe14e74be524e9b2d17f",
+      "gitBlobSha": "f04dfd861afee4b55029eb110019a96518460eae"
+    },
+    {
+      "path": "docs/reports/evidence/v1_1_release/baseline/preview-tests.apk",
+      "sizeBytes": 1629429,
+      "sha256": "fafe33a9c7e7e55ead5d83b8c90accb0e3ebac025bc11c0bbfb50b6fa2808039",
+      "gitBlobSha": "30ea25777de82606a1559790a0bf1a5cc63e2ff3"
+    },
+    {
+      "path": "docs/reports/evidence/v1_1_release/build-A/app-unsigned.apk",
+      "sizeBytes": 16749831,
+      "sha256": "7da0deb424fcd6bde6bd947ef849d11ff22a9394e345ea618a75ee8bad3d86b3",
+      "gitBlobSha": "e6937c93269bdc5104ae3c3480b8ff702913008a"
+    },
+    {
+      "path": "docs/reports/evidence/v1_1_release/production-smoke/production-signed-tests-start-only-fixture.apk",
+      "sizeBytes": 1733240,
+      "sha256": "068083adc4f198b6c8b84c04a12893360456f15a3985a6fb8bcfdd7f756acd08",
+      "gitBlobSha": "baf11c79ab8605e3c63f2c36103cd51042e1cbf0"
+    },
+    {
+      "path": "docs/reports/evidence/v1_1_release/production-smoke/production-signed-tests-unrun-before-final-driver.apk",
+      "sizeBytes": 1729144,
+      "sha256": "7a3d4b9583485cb99ffd5c690b9324be63bb3d6c35287a5962d463ef4c780abb",
+      "gitBlobSha": "fc5b3e4ba021d7a6d2b27b411c5fe488426678df"
+    },
+    {
+      "path": "docs/reports/evidence/v1_1_release/production-smoke/production-signed-tests-verify-type.apk",
+      "sizeBytes": 1733240,
+      "sha256": "e6134f50d7a373cc0cd3e5147c79128bd9c42e2e8af5e6b7c45d8e95fd331ebd",
+      "gitBlobSha": "e3c217ab35768b54fd9d454b812c528c17203f63"
+    },
+    {
+      "path": "docs/reports/evidence/v1_1_release/production-smoke/production-signed-tests.apk",
+      "sizeBytes": 1733240,
+      "sha256": "7449b47f22b1a10f9d7d09bca2f1f3e8f2d2ef98c9b393849a2e55cfe1d8eba3",
+      "gitBlobSha": "5582522395888088abbefa526d04c60cf786ab9e"
+    },
+    {
+      "path": "docs/reports/evidence/v1_1_release/production-smoke/tests-unsigned.apk",
+      "sizeBytes": 1714026,
+      "sha256": "65966d3909fa7747220e5d820d4128fc256a4fd9c72a292a58d8b12a607176df",
+      "gitBlobSha": "26db873828cbe3f2914ea671917d9ce1e959c285"
+    },
+    {
+      "path": "docs/reports/evidence/v1_1_release/provenance/libgba_bridge.so",
+      "sizeBytes": 8385120,
+      "sha256": "d9016c288d4dc25f37c07d102d2fe79529758cabc8dee79054e82c62ce75768d",
+      "gitBlobSha": "854bee829a78d83b39cbf60ed3e41224005f4106"
+    },
+    {
+      "path": "docs/reports/evidence/v1_0_1_release/install/upgraded-private-test-data.tar",
+      "sizeBytes": 3823616,
+      "sha256": "c7fa492bbde6df3dfb27cd52846583c869b01803717e388838ffe5b7213640f0",
+      "gitBlobSha": "a1a847bf5562d6154d9bd9bec90c4e4b477737ec"
+    },
+    {
+      "path": "docs/reports/evidence/v1_0_1_release/native/libandroidx.graphics.path.so",
+      "sizeBytes": 10096,
+      "sha256": "41e9a793c43a0f4fddb19e33f346bace464f30f888ba7b9eaf96294ea115bfb6",
+      "gitBlobSha": "5bf9a29703eecd7ea30e7a3e6b5557d95853bbc2"
+    },
+    {
+      "path": "docs/reports/evidence/v1_0_1_release/native/libdatastore_shared_counter.so",
+      "sizeBytes": 7112,
+      "sha256": "d3e48717c9aa147e0ab21063ba0e8e0211cabf8bf40b222640829519edbf58e1",
+      "gitBlobSha": "64056389fa2c9c69ded3353596a444afb29d6148"
+    },
+    {
+      "path": "docs/reports/evidence/v1_0_1_release/native/libgba_bridge.so",
+      "sizeBytes": 8233904,
+      "sha256": "0f37b75f34e9a01a70fde8e37a4355513a3fbbe530119a545a0ec00480f0223b",
+      "gitBlobSha": "851ab04aa3dbeae7700cce501fbad60cf76ca64e"
+    },
+    {
+      "path": "docs/reports/evidence/phase8_v1_release/baseline/GBA-Lite-0.7.8-code12-release-unsigned.apk",
+      "sizeBytes": 16451163,
+      "sha256": "bdd7bafa595bcd9f55987de98fd45e2ffdbc772ff55d215f565eb85d9211a084",
+      "gitBlobSha": "cac22a68dc903495eaf26473aac645526a72b8dd"
+    },
+    {
+      "path": "docs/reports/evidence/phase8_v1_release/baseline/GBA-Lite-0.7.9-code13-debug.apk",
+      "sizeBytes": 19890718,
+      "sha256": "b168192b7d0a64d2ff49e0d25113679c413a3884763a4733ed24bcd0d1036036",
+      "gitBlobSha": "72a4789638de2449e49fd267f00b3f014b8ac387"
+    },
+    {
+      "path": "docs/reports/evidence/phase8_v1_release/final/GBA-Lite-1.0.0-source.zip",
+      "sizeBytes": 18663269,
+      "sha256": "97e00d527e3f79716368990a05df035ccaf01b499222ed866b735aab0aaa597a",
+      "gitBlobSha": "c53c28193e9580b23f795b32fa9655451edb46ce"
+    },
+    {
+      "path": "docs/reports/evidence/phase8_v1_release/reproducibility/GBA-Lite-1.0.0-code14-signed-A.apk.idsig",
+      "sizeBytes": 137611,
+      "sha256": "b701656eff5c71e41fbb3d51cc6bb016506fd0aac7bf9ea29f550a2d829bb08b",
+      "gitBlobSha": "a4cfb7590041be922018cc5417b997220b72f50e"
+    },
+    {
+      "path": "docs/reports/evidence/phase8_v1_release/reproducibility/GBA-Lite-1.0.0-code14-signed-B.apk.idsig",
+      "sizeBytes": 137611,
+      "sha256": "b701656eff5c71e41fbb3d51cc6bb016506fd0aac7bf9ea29f550a2d829bb08b",
+      "gitBlobSha": "a4cfb7590041be922018cc5417b997220b72f50e"
+    },
+    {
+      "path": "docs/reports/evidence/phase8_v1_release/unsigned/GBA-Lite-1.0.0-code14-unsigned-A.apk",
+      "sizeBytes": 16451159,
+      "sha256": "d6af397986726c4bfa41d0a53ce3a154e85fd0de625a914f274bfd94564131a9",
+      "gitBlobSha": "42bafcc86596b4410c08931494f8732fda0edd15"
+    }
+  ],
+  "scope": "Only reviewed historical scripts and binary evidence, not a snapshot of current product source.",
+  "privacy": "Current signing credential patterns, private key markers and credential filenames scanned; no project .local files uploaded. The test-data TAR contains the project-authored persistence.gba fixture, not phone user data."
+}
